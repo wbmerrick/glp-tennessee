@@ -60,35 +60,40 @@
 
   /* ---------- hero (Tennessee flag field) ---------- */
   .hero{
+    --mark:clamp(280px,36vw,500px);
     background:var(--crimson);
     color:var(--white);
     padding:84px 0 92px;
-    position:relative;
     overflow:hidden;
   }
-  /* Tri-star: solid navy disc, white ring, three white stars */
-  .hero-mark{
-    position:absolute;
-    right:clamp(12px,2vw,28px);
-    top:50%;
-    transform:translateY(-50%);
-    width:min(52vw,520px);
-    height:min(52vw,520px);
-    pointer-events:none;
-    z-index:1;
+  /* Copy and emblem live in separate columns so white text never sits on the white ring/stars */
+  .hero-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    column-gap:clamp(24px,4vw,56px);
   }
-  .hero-inner{position:relative;z-index:3;max-width:min(820px,68%)}
+  .hero-inner{max-width:820px}
+  /* Tri-star: solid navy disc, white ring, three white stars; bleeds past the right edge like a flag's fly */
+  .hero-mark{
+    width:var(--mark);
+    height:var(--mark);
+    margin-right:calc(var(--mark) * -.24);
+    pointer-events:none;
+  }
   .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.015em;margin-bottom:26px}
   .hero p.lede{font-size:clamp(1.1rem,1.8vw,1.3rem);line-height:1.55;max-width:600px;color:#FCE6E6;margin-bottom:36px}
   .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .hero .fine{margin-top:26px;font-size:.88rem;color:#F3C7C7;max-width:560px}
   @media(max-width:820px){
+    .hero{--mark:clamp(220px,58vw,300px);padding-bottom:0}
+    .hero-grid{grid-template-columns:1fr;row-gap:32px}
     .hero-inner{max-width:100%}
-    .hero-mark{width:min(70vw,420px);height:min(70vw,420px);right:clamp(4px,1vw,16px);opacity:.92}
+    /* Stack the emblem under the copy and crop it at the bottom-right corner */
+    .hero-mark{justify-self:end;margin:0 calc(var(--mark) * -.22) calc(var(--mark) * -.42) 0}
   }
   @media(max-width:720px){
-    .hero{padding:60px 0 68px}
-    .hero-mark{width:300px;height:300px;right:-40px;opacity:.75}
+    .hero{padding-top:60px}
   }
 
   /* ---------- sections ---------- */
@@ -229,26 +234,28 @@
 </nav>
 
 <header class="hero" id="top">
-  <svg class="hero-mark" viewBox="0 0 100 100" aria-hidden="true">
-    <defs>
-      <path id="tn-star" d="M0-11.2 2.66-3.45 11.2-3.45 4.27 1.35 6.93 9.1 0 4.3-6.93 9.1-4.27 1.35-11.2-3.45-2.66-3.45Z"/>
-    </defs>
-    <circle cx="50" cy="50" r="45.5" fill="#0F1E3D"/>
-    <circle cx="50" cy="50" r="45.5" fill="none" stroke="#FFFFFF" stroke-width="3.2"/>
-    <g fill="#FFFFFF">
-      <use href="#tn-star" transform="translate(50 34)"/>
-      <use href="#tn-star" transform="translate(34.5 63.5) rotate(-20)"/>
-      <use href="#tn-star" transform="translate(65.5 63.5) rotate(20)"/>
-    </g>
-  </svg>
-  <div class="wrap hero-inner">
-    <h1>GLP-1 weight loss, prescribed by a Tennessee doctor.</h1>
-    <p class="lede">A $99/month membership with Dr. Will Merrick, DO. If treatment is right for you, your semaglutide or tirzepatide prescription goes to your own pharmacy — you pay them directly for the medication. No markups. No middlemen. No contracts.</p>
-    <div class="cta-row">
-      <a href="#" class="btn btn-crimson btn-white" onclick="openElig(event)">Check my eligibility</a>
-      <a href="#how" class="btn btn-ghost">See how it works</a>
+  <div class="wrap hero-grid">
+    <div class="hero-inner">
+      <h1>GLP-1 weight loss, prescribed by a Tennessee doctor.</h1>
+      <p class="lede">A $99/month membership with Dr. Will Merrick, DO. If treatment is right for you, your semaglutide or tirzepatide prescription goes to your own pharmacy — you pay them directly for the medication. No markups. No middlemen. No contracts.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-crimson btn-white" onclick="openElig(event)">Check my eligibility</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+      <p class="fine">Membership covers your medical care. A prescription is written only if it's medically appropriate after your evaluation — and if it isn't, your first month is refunded in full.</p>
     </div>
-    <p class="fine">Membership covers your medical care. A prescription is written only if it's medically appropriate after your evaluation — and if it isn't, your first month is refunded in full.</p>
+    <svg class="hero-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <path id="tn-star" d="M0-11.2 2.66-3.45 11.2-3.45 4.27 1.35 6.93 9.1 0 4.3-6.93 9.1-4.27 1.35-11.2-3.45-2.66-3.45Z"/>
+      </defs>
+      <circle cx="50" cy="50" r="45.5" fill="#0F1E3D"/>
+      <circle cx="50" cy="50" r="45.5" fill="none" stroke="#FFFFFF" stroke-width="3.2"/>
+      <g fill="#FFFFFF">
+        <use href="#tn-star" transform="translate(50 34)"/>
+        <use href="#tn-star" transform="translate(34.5 63.5) rotate(-20)"/>
+        <use href="#tn-star" transform="translate(65.5 63.5) rotate(20)"/>
+      </g>
+    </svg>
   </div>
 </header>
 
