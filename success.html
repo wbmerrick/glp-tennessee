@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to GLP Tennessee — next steps</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Besley:wght@700;800;900&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--crimson:#B5182B;--crimson-deep:#8E1222;--navy:#0F1E3D;--ink:#1D2638;--ink-soft:#4A5468;--paper:#FBF8F3;--line:#D9D1C2;--white:#fff;
+    --display:'Besley',Georgia,serif;--sans:'Libre Franklin',system-ui,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .band{background:var(--crimson);color:var(--white);padding:70px 24px 64px;text-align:center}
+  .band svg{margin:0 auto 22px}
+  .band h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.015em;margin-bottom:12px}
+  .band p{color:#FCE6E6;max-width:540px;margin:0 auto;font-size:1.1rem}
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px 80px}
+  h2{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--navy);margin-bottom:34px}
+  .step{display:flex;gap:22px;padding:26px 0;border-top:1px solid var(--line)}
+  .step:last-of-type{border-bottom:1px solid var(--line)}
+  .step .num{font-family:var(--display);font-weight:900;font-size:2.1rem;color:var(--crimson);line-height:1;min-width:38px}
+  .step h3{font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--navy);margin-bottom:8px}
+  .step p{color:var(--ink-soft);font-size:1rem}
+  .btn{display:inline-block;background:var(--crimson);color:var(--white);font-weight:600;text-decoration:none;border-radius:5px;padding:13px 26px;margin-top:14px;transition:background-color .15s ease}
+  .btn:hover{background:var(--crimson-deep)}
+  :focus-visible{outline:3px solid var(--crimson);outline-offset:2px}
+  .ready{background:#F1EBE0;border-radius:8px;padding:28px 30px;margin-top:44px}
+  .ready h3{font-family:var(--display);font-weight:800;color:var(--navy);font-size:1.15rem;margin-bottom:12px}
+  .ready li{margin-left:20px;padding:4px 0;color:var(--ink-soft);font-size:.98rem}
+  .foot{color:var(--ink-soft);font-size:.9rem;margin-top:44px}
+  .foot a{color:var(--crimson)}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <svg width="56" height="56" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="#FFFFFF" stroke-width="6"/><g fill="#FFFFFF"><path d="M50 18l5.2 11.2 12.3 1.5-9.1 8.4 2.4 12.1L50 45.1l-10.8 6.1 2.4-12.1-9.1-8.4 12.3-1.5z"/><path d="M30 56l4.3 9.3 10.2 1.2-7.5 7 2 10L30 78.4 21 83.5l2-10-7.5-7 10.2-1.2z" transform="rotate(-18 30 70)"/><path d="M70 56l4.3 9.3 10.2 1.2-7.5 7 2 10L70 78.4 61 83.5l2-10-7.5-7 10.2-1.2z" transform="rotate(18 70 70)"/></g></svg>
+  <h1>You're in. Welcome.</h1>
+  <p>Your membership is active and Stripe has emailed your receipt. Three things stand between you and your first visit with Dr. Merrick.</p>
+</div>
+
+<div class="wrap">
+  <h2>What happens now</h2>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div>
+      <h3>Complete your medical intake</h3>
+      <p>This is the real one — health history, medications, allergies, weight history, and the pharmacy you want your prescription sent to. It's handled in our secure, HIPAA-compliant patient portal and takes about ten minutes.</p>
+      <a class="btn" id="intakeBtn" href="#" onclick="goIntake(event)">Start my intake</a>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">2</div>
+    <div>
+      <h3>Schedule your video visit</h3>
+      <p>Once your intake is in, you'll pick a time for your evaluation with Dr. Merrick. Plan on a thorough first visit — this is where the treatment decision actually gets made.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">3</div>
+    <div>
+      <h3>Fill your prescription and start titration</h3>
+      <p>If treatment is appropriate, your prescription goes to your chosen pharmacy the same day as your visit, along with Dr. Merrick's guidance on the cheapest legitimate way to source it. Monthly follow-ups keep your dose moving at the right pace.</p>
+    </div>
+  </div>
+
+  <div class="ready">
+    <h3>Have these handy for your intake</h3>
+    <ul>
+      <li>Your current medication list, including supplements</li>
+      <li>The name and location of your preferred pharmacy</li>
+      <li>A recent weight, and any labs from the past year if you have them</li>
+      <li>Your insurance card, if you want us to check GLP-1 coverage</li>
+    </ul>
+  </div>
+
+  <p class="foot">Remember: if Dr. Merrick determines after your evaluation that GLP-1 treatment isn't medically appropriate for you, your first month is refunded in full. Questions in the meantime: <a href="mailto:care@glptennessee.com">care@glptennessee.com</a>.</p>
+</div>
+
+<script>
+/* CONFIG: paste the Akute patient intake / registration link here before launch. */
+var AKUTE_INTAKE_URL = "";
+function goIntake(e){
+  e.preventDefault();
+  if(AKUTE_INTAKE_URL){ window.location.href = AKUTE_INTAKE_URL; }
+  else { alert('The intake opens here once the Akute patient link is connected (see CONFIG at the bottom of this page).'); }
+}
+</script>
+</body>
+</html>
