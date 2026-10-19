@@ -35,17 +35,28 @@
   .ready li{margin-left:20px;padding:4px 0;color:var(--ink-soft);font-size:.98rem}
   .foot{color:var(--ink-soft);font-size:.9rem;margin-top:44px}
   .foot a{color:var(--crimson)}
+  [hidden]{display:none !important}
+  .denied{max-width:640px}
+  .denied p{color:var(--ink-soft);margin-bottom:18px}
+  .denied .btn{background:var(--navy)}
+  .denied .btn.secondary{background:transparent;color:var(--navy);border:1.5px solid var(--navy);margin-left:10px}
 </style>
 </head>
 <body>
 
 <div class="band">
   <img src="/logo.svg" width="64" height="64" alt="">
-  <h1>You're in. Welcome.</h1>
-  <p>Your membership is active and Stripe has emailed your receipt. Three things stand between you and your first visit with Dr. Merrick.</p>
+  <h1 id="bandTitle">Confirming your payment</h1>
+  <p id="bandText">Checking this checkout with Stripe before we show next steps.</p>
 </div>
 
-<div class="wrap">
+<noscript>
+  <div class="wrap">
+    <p>Turn on JavaScript so we can confirm your Stripe payment before showing the intake.</p>
+  </div>
+</noscript>
+
+<div class="wrap" id="confirmed" hidden>
   <h2>What happens now</h2>
 
   <div class="step">
@@ -53,7 +64,7 @@
     <div>
       <h3>Complete your medical intake</h3>
       <p>This is the real one — health history, medications, allergies, weight history, and the pharmacy you want your prescription sent to. It's handled in our secure, HIPAA-compliant patient portal and takes about ten minutes.</p>
-      <a class="btn" id="intakeBtn" href="#" onclick="goIntake(event)">Start my intake</a>
+      <a class="btn" id="intakeBtn">Start my intake</a>
     </div>
   </div>
 
@@ -62,7 +73,7 @@
     <div>
       <h3>Schedule your video visit</h3>
       <p>Pick a time for your 15-minute video evaluation with Dr. Merrick — this is where the treatment decision actually gets made. Please finish your intake before the visit so your time goes to the decision, not paperwork.</p>
-      <a class="btn" href="https://ispry.akutehealth.com/appointments/6ad60073a670cf017381e06c">Book my video visit</a>
+      <a class="btn" id="bookBtn">Book my video visit</a>
     </div>
   </div>
 
@@ -89,13 +100,53 @@
   <p class="foot">Remember: if Dr. Merrick determines after your evaluation that GLP-1 treatment isn't medically appropriate for you, your first month is refunded in full. Questions in the meantime: <a href="mailto:care@glptennessee.com">care@glptennessee.com</a>.</p>
 </div>
 
+<div class="wrap denied" id="denied" hidden>
+  <h2>Payment not confirmed</h2>
+  <p>This page shows the medical intake only after Stripe confirms a completed $99 membership payment. If you just paid, open the receipt link from Stripe. If you still need to join, start from the eligibility check.</p>
+  <p>Already a member and stuck? Email <a href="mailto:care@glptennessee.com">care@glptennessee.com</a>.</p>
+  <a class="btn" href="/">Back to GLP Tennessee</a>
+  <a class="btn secondary" href="https://billing.stripe.com/p/login/4gM7sNehu4CUcef1PL7Zu01">Manage membership</a>
+</div>
+
 <script>
-/* CONFIG: paste the Akute patient intake / registration link here before launch. */
-var AKUTE_INTAKE_URL = "https://ispry.akutehealth.com/forms/6ad5cf16e5719984c9e6454e";
-function goIntake(e){
-  e.preventDefault();
-  if(AKUTE_INTAKE_URL){ window.location.href = AKUTE_INTAKE_URL; }
-  else { alert('The intake opens here once the Akute patient link is connected (see CONFIG at the bottom of this page).'); }
+var SESSION_ID = /^cs_(test|live)_[A-Za-z0-9]+$/;
+var AKUTE_HOST = "ispry.akutehealth.com";
+
+function showDenied(){
+  document.getElementById('bandTitle').textContent = 'Payment not confirmed';
+  document.getElementById('bandText').textContent = 'We only show the intake after Stripe confirms the $99 membership payment.';
+  document.getElementById('confirmed').hidden = true;
+  document.getElementById('denied').hidden = false;
+}
+
+function safeAkuteUrl(value){
+  try {
+    var url = new URL(value);
+    if (url.protocol !== 'https:' || url.hostname !== AKUTE_HOST) return '';
+    return url.href;
+  } catch (e) { return ''; }
+}
+
+function showConfirmed(data){
+  var intake = safeAkuteUrl(data.intakeUrl);
+  var booking = safeAkuteUrl(data.bookingUrl);
+  if (!intake || !booking) { showDenied(); return; }
+  document.getElementById('intakeBtn').href = intake;
+  document.getElementById('bookBtn').href = booking;
+  document.getElementById('bandTitle').textContent = "You're in. Welcome.";
+  document.getElementById('bandText').textContent = 'Your membership is active and Stripe has emailed your receipt. Three things stand between you and your first visit with Dr. Merrick.';
+  document.getElementById('denied').hidden = true;
+  document.getElementById('confirmed').hidden = false;
+}
+
+var sessionId = new URLSearchParams(location.search).get('session_id') || '';
+if (!SESSION_ID.test(sessionId)) {
+  showDenied();
+} else {
+  fetch('/api/checkout-session?session_id=' + encodeURIComponent(sessionId), { headers: { 'Accept': 'application/json' } })
+    .then(function(response){ if (!response.ok) throw new Error('unconfirmed'); return response.json(); })
+    .then(showConfirmed)
+    .catch(showDenied);
 }
 </script>
 </body>
