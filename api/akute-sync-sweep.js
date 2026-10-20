@@ -1,10 +1,11 @@
 const { runBackupSweep } = require("../lib/akute-chart-sync");
+const { ensureTaskWebhooks } = require("../lib/akute-register-webhooks");
 
 /**
  * Backup sweep for intake part 2 (address + preferred pharmacy → chart).
- * Runs on a Vercel cron and can be invoked manually with the shared secret.
+ * Also keeps Tasks create/update webhooks pointed at our handler.
  *
- * Env: AKUTE_API_KEY, AKUTE_USER_ID, AKUTE_SWEEP_SECRET (optional but recommended)
+ * Env: AKUTE_API_KEY, AKUTE_USER_ID, AKUTE_WEBHOOK_SECRET, AKUTE_SWEEP_SECRET
  * Cron: see vercel.json
  */
 module.exports = async function handler(req, res) {
@@ -35,8 +36,21 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    let webhooks = null;
+    if (process.env.AKUTE_WEBHOOK_SECRET) {
+      try {
+        webhooks = await ensureTaskWebhooks({});
+      } catch (error) {
+        webhooks = {
+          ok: false,
+          error: error.code || "register_failed",
+          env: error.env
+        };
+      }
+    }
+
     const result = await runBackupSweep({ limit: 50 });
-    res.status(result.ok ? 200 : 207).json(result);
+    res.status(result.ok ? 200 : 207).json(Object.assign({}, result, { webhooks: webhooks }));
   } catch (error) {
     const status = error.code === "missing_env" ? 503 : 500;
     res.status(status).json({
