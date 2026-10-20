@@ -1,13 +1,14 @@
 const { verifyAkuteSignature, readRawBody, parseWebhookPayload } = require("../lib/akute-webhook");
-const { syncFromTaskWebhook } = require("../lib/akute-chart-sync");
 
 /**
- * Akute → GLP Tennessee webhook.
- * Subscribe to Tasks create (and update) in Akute Developer → Notifications.
- * Form submissions create a task tagged "form submission" with a
- * QuestionnaireResponse attachment; we then push address + pharmacy onto the chart.
+ * Akute → GLP Tennessee webhook (retired chart writer).
  *
- * Env: AKUTE_API_KEY, AKUTE_USER_ID, AKUTE_WEBHOOK_SECRET
+ * Address/pharmacy chart sync + pharmacy-pick tasks are owned by sprymd
+ * (www.sprymd.ai/api/webhooks/akute). This handler only verifies the
+ * signature and acknowledges so leftover Akute subscriptions here do not
+ * retry or double-write the patient chart.
+ *
+ * Env: AKUTE_WEBHOOK_SECRET (signature only)
  */
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
@@ -19,7 +20,7 @@ module.exports = async function handler(req, res) {
   }
 
   const secret = process.env.AKUTE_WEBHOOK_SECRET;
-  if (!secret || !process.env.AKUTE_API_KEY || !process.env.AKUTE_USER_ID) {
+  if (!secret) {
     res.status(503).json({ ok: false, error: "not_configured" });
     return;
   }
@@ -31,34 +32,17 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  let payload;
   try {
-    payload = parseWebhookPayload(req);
+    parseWebhookPayload(req);
   } catch (e) {
     res.status(400).json({ ok: false, error: "invalid_json" });
     return;
   }
 
-  const resource = String(payload.resource_type || payload.resourceType || "").toLowerCase();
-  const event = String(payload.event_type || payload.eventType || "").toLowerCase();
-  if (resource && resource !== "tasks" && resource !== "task") {
-    res.status(200).json({ ok: true, ignored: true, reason: "unhandled_resource" });
-    return;
-  }
-  if (event && event !== "create" && event !== "update") {
-    res.status(200).json({ ok: true, ignored: true, reason: "unhandled_event" });
-    return;
-  }
-
-  try {
-    const result = await syncFromTaskWebhook(payload);
-    res.status(200).json(result);
-  } catch (error) {
-    const status = error.code === "missing_env" ? 503 : 500;
-    res.status(status).json({
-      ok: false,
-      error: error.code || "sync_failed",
-      env: error.env
-    });
-  }
+  res.status(200).json({
+    ok: true,
+    ignored: true,
+    reason: "chart_sync_retired",
+    owner: "https://www.sprymd.ai/api/webhooks/akute"
+  });
 };
