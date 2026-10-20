@@ -1,7 +1,7 @@
 const { decideAccess, isCheckoutSessionId } = require("../lib/checkout-access");
 
-const INTAKE_URL = "https://ispry.akutehealth.com/forms/6ad5cf16e5719984c9e6454e";
-const BOOKING_URL = "https://ispry.akutehealth.com/appointments/6ad60073a670cf017381e06c";
+const INTAKE_URL = "https://glptennessee.akutehealth.com/forms/6ad624f0329a6097a0d5d8f6";
+const BOOKING_URL = "https://glptennessee.akutehealth.com/appointments/6ad60073a670cf017381e06c";
 
 async function stripeGet(key, path) {
   const response = await fetch("https://api.stripe.com" + path, {
