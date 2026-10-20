@@ -33,7 +33,12 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const result = await ensureTaskWebhooks({});
+    // Default: retarget destination only (do not overwrite org-wide signing secret).
+    // ?pushSecret=1 forces writing AKUTE_WEBHOOK_SECRET onto the Akute subscriptions.
+    const pushSecret = Boolean(
+      (req.query && (req.query.pushSecret === "1" || req.query.pushSecret === "true"))
+    );
+    const result = await ensureTaskWebhooks({ pushSecret: pushSecret });
     res.status(result.ok ? 200 : 207).json(result);
   } catch (error) {
     const status = error.code === "missing_env" ? 503 : 500;
