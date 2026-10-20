@@ -522,11 +522,16 @@
 
 <script>
 /* =====================================================================
-   CONFIG — the two links to set before launch:
-   1) STRIPE_PAYMENT_LINK: create a $99/mo subscription Payment Link in
-      Stripe (Product: "GLP Tennessee Membership"), set its after-payment
-      redirect to https://glptennessee.com/success.html, paste URL here.
-   2) success.html has AKUTE_INTAKE_URL for the patient intake link.
+   CONFIG — links set before launch:
+   1) STRIPE_PAYMENT_LINK: $99/mo subscription Payment Link
+      (Product: "GLP Tennessee Membership"). After payment, Stripe must
+      redirect to the live origin plus
+      /success?session_id={CHECKOUT_SESSION_ID}
+      (today: https://glp-tennessee.vercel.app/success?session_id={CHECKOUT_SESSION_ID}).
+      The success page asks /api/checkout-session
+      to confirm that session with STRIPE_SECRET_KEY before it reveals
+      the Akute intake and booking links.
+   2) Those Akute URLs live in lib/checkout-access.js, not in the page.
    ===================================================================== */
 var STRIPE_PAYMENT_LINK = "https://buy.stripe.com/6oU7sN2yM0mE7XZ2TP7Zu02";
 
