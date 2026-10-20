@@ -1,5 +1,5 @@
 
-const { akuteRequest, requireEnv } = require("../lib/akute-client");
+const { akuteRequest } = require("../lib/akute-client");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
@@ -16,27 +16,52 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const id = (req.query && req.query.id) || "evt-23b1c3ce643f4dd3854f967cfe2293c5";
-  const probes = [];
+  const start = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString();
+  const end = new Date().toISOString();
+  const listed = await akuteRequest("GET", "/v1/webhooks?start_time=" + encodeURIComponent(start) + "&end_time=" + encodeURIComponent(end));
+  const items = Array.isArray(listed.data) ? listed.data : [];
 
-  async function probe(label, method, path) {
-    const result = await akuteRequest(method, path);
-    probes.push({ label, method, path, status: result.status, ok: result.ok, data: result.data });
+  // Fetch details for recent task events (cap) to find recipients + response codes
+  const taskIds = items.filter(function (i) {
+    return String(i.resource || i.resource_type || "").toLowerCase().indexOf("task") >= 0;
+  }).slice(0, 25).map(function (i) { return i.id; });
+
+  const details = [];
+  for (const id of taskIds) {
+    const got = await akuteRequest("GET", "/v1/webhooks/" + encodeURIComponent(id));
+    if (!got.ok) continue;
+    const d = got.data || {};
+    details.push({
+      id: d.id,
+      timestamp: d.timestamp,
+      resource_type: d.resource_type,
+      recipient: d.recipient,
+      status: d.status,
+      response_code: d.response_code,
+      event_type: d.payload && d.payload.event_type
+    });
   }
 
-  await probe("get_webhook_id", "GET", "/v1/webhooks/" + encodeURIComponent(id));
-  await probe("list_no_query", "GET", "/v1/webhooks");
-  await probe("notifications_all", "GET", "/notifications");
-  await probe("notifications_secret", "GET", "/notifications/" + encodeURIComponent(id) + "/secret");
-  await probe("notif_task", "GET", "/notifications?resource=Task");
-  await probe("notif_type_webhook", "GET", "/notifications?type=webhook");
+  const byRecipient = {};
+  details.forEach(function (d) {
+    const key = d.recipient || "(none)";
+    byRecipient[key] = byRecipient[key] || { count: 0, codes: {} };
+    byRecipient[key].count += 1;
+    const code = String(d.response_code);
+    byRecipient[key].codes[code] = (byRecipient[key].codes[code] || 0) + 1;
+  });
 
-  // Never echo AKUTE_WEBHOOK_SECRET; only whether set + length
   const secret = process.env.AKUTE_WEBHOOK_SECRET || "";
   res.status(200).json({
     ok: true,
     localSecretConfigured: Boolean(secret),
     localSecretLength: secret.length,
-    probes
+    listCount: items.length,
+    sampledTaskDeliveries: details.length,
+    byRecipient: byRecipient,
+    recentGlp: details.filter(function (d) {
+      return String(d.recipient || "").indexOf("glp-tennessee") >= 0;
+    }),
+    recentSample: details.slice(0, 8)
   });
 };
