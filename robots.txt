@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /success
+Disallow: /api/
+
+Sitemap: https://www.glptennessee.com/sitemap.xml
