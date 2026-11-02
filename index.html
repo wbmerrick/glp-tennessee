@@ -74,205 +74,245 @@
     --crimson:#B5182B;
     --crimson-deep:#8E1222;
     --navy:#0F1E3D;
-    --navy-soft:#223457;
-    --ink:#1D2638;
+    --navy-2:#1B2C52;
+    --sky:#EDF0F6;
+    --ink:#18213A;
     --ink-soft:#4A5468;
-    --paper:#FBF8F3;
-    --paper-dim:#F1EBE0;
-    --line:#D9D1C2;
+    --line:#D8DEE9;
     --white:#FFFFFF;
     --display:'Besley',Georgia,serif;
     --sans:'Libre Franklin',system-ui,-apple-system,sans-serif;
+    --r:8px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-  body{font-family:var(--sans);color:var(--ink);background:var(--paper);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--sans);color:var(--ink);background:var(--white);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
   img,svg{display:block}
   a{color:inherit}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-  .narrow{max-width:760px}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 
-  /* ---------- top strip ---------- */
-  .strip{background:var(--navy);color:#C9D3E8;font-size:.85rem;text-align:center;padding:9px 16px;letter-spacing:.01em}
-  .strip strong{color:var(--white);font-weight:600}
-
-  /* ---------- nav ---------- */
-  nav{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-  .nav-inner{display:flex;align-items:center;gap:28px;padding:16px 24px;max-width:1120px;margin:0 auto}
-  .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
-  .brand .mark{width:34px;height:34px}
-  .brand .word{font-family:var(--display);font-weight:800;font-size:1.22rem;color:var(--navy);letter-spacing:-.01em;line-height:1}
-  .brand .word em{font-style:normal;color:var(--crimson)}
-  .nav-links{display:flex;gap:24px;margin-left:auto;align-items:center}
-  .nav-links a{text-decoration:none;font-size:.95rem;font-weight:500;color:var(--ink-soft)}
-  .nav-links a:hover{color:var(--navy)}
-  .btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:1rem;text-decoration:none;border:none;cursor:pointer;border-radius:5px;padding:13px 26px;transition:background-color .15s ease}
+  /* ---------- buttons ---------- */
+  .btn{display:inline-block;font-family:var(--sans);font-weight:700;font-size:1.02rem;text-decoration:none;border:2px solid transparent;cursor:pointer;border-radius:6px;padding:14px 28px;line-height:1.2;transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .15s ease}
+  .btn:active{transform:translateY(1px)}
   .btn-crimson{background:var(--crimson);color:var(--white)}
   .btn-crimson:hover{background:var(--crimson-deep)}
-  .btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.55)}
-  .btn-ghost:hover{border-color:var(--white)}
-  .btn-white{background:var(--paper);color:var(--crimson)}
-  .btn-white:hover{background:var(--white)}
+  .btn-white{background:var(--white);color:var(--crimson)}
+  .btn-white:hover{background:var(--navy);color:var(--white)}
+  .btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.6)}
+  .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
   .btn-nav{padding:10px 20px;font-size:.92rem}
-  :focus-visible{outline:3px solid var(--crimson);outline-offset:2px}
-  .hero :focus-visible,.doctor :focus-visible,.price :focus-visible{outline-color:var(--white)}
-  @media(max-width:820px){.nav-links a:not(.btn){display:none}}
+  :focus-visible{outline:3px solid var(--crimson);outline-offset:3px}
+  .hero :focus-visible,.doctor :focus-visible,.price :focus-visible,footer :focus-visible,.ledger-covers :focus-visible{outline-color:var(--white)}
 
-  /* ---------- hero (Tennessee flag field) ---------- */
-  .hero{
-    --mark:clamp(280px,36vw,500px);
-    background:var(--crimson);
-    color:var(--white);
-    padding:84px 0 92px;
-    overflow:hidden;
-  }
-  /* Copy and emblem live in separate columns so white text never sits on the white ring/stars */
-  .hero-grid{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) auto;
-    align-items:center;
-    column-gap:clamp(24px,4vw,56px);
-  }
-  .hero-inner{max-width:820px}
-  /* Tri-star: solid navy disc, white ring, three white stars; bleeds past the right edge like a flag's fly */
-  .hero-mark{
-    width:var(--mark);
-    height:var(--mark);
-    margin-right:calc(var(--mark) * -.24);
-    pointer-events:none;
-  }
-  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.015em;margin-bottom:26px}
-  .hero p.lede{font-size:clamp(1.1rem,1.8vw,1.3rem);line-height:1.55;max-width:600px;color:#FCE6E6;margin-bottom:36px}
+  /* ---------- top strip + nav ---------- */
+  .strip{background:var(--navy);color:#C9D3E8;font-size:.85rem;text-align:center;padding:9px 16px}
+  .strip strong{color:var(--white);font-weight:600}
+  nav{background:rgba(255,255,255,.96);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  .nav-inner{display:flex;align-items:center;gap:28px;padding:14px 24px;max-width:1140px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .brand .mark{width:36px;height:36px}
+  .brand .word{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--navy);letter-spacing:-.01em;line-height:1}
+  .brand .word em{font-style:normal;color:var(--crimson)}
+  .nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+  .nav-links a:not(.btn){text-decoration:none;font-size:.95rem;font-weight:500;color:var(--ink-soft);padding:4px 0;border-bottom:2px solid transparent}
+  .nav-links a:not(.btn):hover{color:var(--navy);border-bottom-color:var(--crimson)}
+  @media(max-width:880px){.nav-links a:not(.btn){display:none}}
+  @media(max-width:420px){.btn-nav{padding:9px 14px;font-size:.86rem}.brand .word{font-size:1.1rem}}
+
+  /* ---------- hero: the Tennessee flag field ---------- */
+  .hero{--mark:clamp(300px,40vw,560px);background:var(--crimson);color:var(--white);position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:clamp(24px,4vw,56px);padding-top:clamp(64px,9vw,104px);padding-bottom:clamp(72px,9vw,108px)}
+  .hero-inner{max-width:680px}
+  .hero-mark{width:var(--mark);height:var(--mark);margin-right:calc(var(--mark) * -.26);pointer-events:none;animation:mark-in 1.1s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes mark-in{from{opacity:0;transform:rotate(-24deg) scale(.92)}to{opacity:1;transform:none}}
+  .hero h1{font-family:var(--display);font-weight:900;font-size:clamp(2.7rem,6.6vw,5rem);line-height:.98;letter-spacing:-.025em;margin-bottom:28px;text-wrap:balance}
+  .hero .lede{font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.55;max-width:34em;color:#FDE9EA;margin-bottom:36px}
   .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .hero .fine{margin-top:26px;font-size:.88rem;color:#F3C7C7;max-width:560px}
-  @media(max-width:820px){
-    .hero{--mark:clamp(220px,58vw,300px);padding-bottom:0}
-    .hero-grid{grid-template-columns:1fr;row-gap:32px}
-    .hero-inner{max-width:100%}
-    /* Stack the emblem under the copy and crop it at the bottom-right corner */
-    .hero-mark{justify-self:end;margin:0 calc(var(--mark) * -.22) calc(var(--mark) * -.42) 0}
-  }
-  @media(max-width:720px){
-    .hero{padding-top:60px}
+  .hero .fine{margin-top:22px;font-size:.88rem;color:#F6CDD1;max-width:36em}
+  .doc-chip{display:flex;align-items:center;gap:14px;margin-top:40px;padding-top:26px;border-top:1px solid rgba(255,255,255,.28);max-width:34em}
+  .doc-chip img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:2px solid var(--white);flex:none}
+  .doc-chip p{font-size:.95rem;line-height:1.45;color:#FDE9EA}
+  .doc-chip b{display:block;color:var(--white);font-weight:700;font-size:1.02rem}
+  /* flag hem: the white pinstripe and blue bar from the state flag's fly end */
+  .hem{height:18px;background:linear-gradient(var(--white) 0 5px,var(--navy) 5px 100%)}
+  @media(max-width:860px){
+    .hero{--mark:clamp(220px,60vw,320px)}
+    .hero-grid{grid-template-columns:1fr;row-gap:8px;padding-bottom:0}
+    .hero-mark{justify-self:end;margin:0 calc(var(--mark) * -.24) calc(var(--mark) * -.4) 0}
   }
 
-  /* ---------- sections ---------- */
-  section{padding:84px 0}
-  .kicker{font-family:var(--display);font-weight:700;color:var(--crimson);font-size:1.05rem;margin-bottom:10px}
-  h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.12;letter-spacing:-.01em;color:var(--navy);margin-bottom:18px}
-  .sub{color:var(--ink-soft);max-width:640px;font-size:1.08rem}
-  @media(max-width:720px){section{padding:60px 0}}
+  /* ---------- section rhythm ---------- */
+  section{padding:clamp(64px,9vw,104px) 0}
+  .kicker{font-family:var(--display);font-weight:700;color:var(--crimson);font-size:1.08rem;margin-bottom:10px}
+  h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,3.8vw,3rem);line-height:1.08;letter-spacing:-.018em;color:var(--navy);margin-bottom:18px;max-width:22ch;text-wrap:balance}
+  .sub{color:var(--ink-soft);max-width:38em;font-size:1.1rem}
+  .note{margin-top:24px;font-size:.92rem;color:var(--ink-soft);max-width:46em}
 
-  /* steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:52px}
-  .step .num{font-family:var(--display);font-weight:900;font-size:3.4rem;color:var(--crimson);line-height:1;margin-bottom:14px}
-  .step h3{font-family:var(--display);font-weight:700;font-size:1.3rem;color:var(--navy);margin-bottom:10px}
+  /* ---------- steps: one star per step, like the flag's three ---------- */
+  .steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px;position:relative}
+  .steps::before{content:"";position:absolute;left:32px;right:32px;top:31px;border-top:2px dashed var(--line);z-index:0}
+  .step{position:relative;z-index:1}
+  .star{width:64px;height:64px;position:relative;margin-bottom:22px;background:var(--white)}
+  .star svg{width:64px;height:64px}
+  .star span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:1.3rem;color:var(--white);padding-top:4px}
+  .step h3{font-family:var(--display);font-weight:800;font-size:1.32rem;line-height:1.25;color:var(--navy);margin-bottom:10px}
   .step p{color:var(--ink-soft);font-size:1rem}
-  @media(max-width:820px){.steps{grid-template-columns:1fr;gap:34px}}
+  @media(max-width:820px){.steps{grid-template-columns:1fr;gap:36px}.steps::before{left:31px;right:auto;top:32px;bottom:32px;border-top:none;border-left:2px dashed var(--line)}.step{padding-left:88px}.star{position:absolute;left:0;top:-4px}}
 
-  /* ledger */
-  .ledger-sec{background:var(--paper-dim)}
-  .ledger{display:grid;grid-template-columns:1fr 1fr;margin-top:48px;border:1.5px solid var(--navy);background:var(--paper)}
-  .ledger-col{padding:38px 36px}
-  .ledger-col:first-child{border-right:1.5px solid var(--navy)}
-  .ledger-col h3{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--navy);margin-bottom:6px}
+  /* ---------- ledger: what $99 covers vs. what the pharmacy charges ---------- */
+  .ledger-sec{background:var(--sky)}
+  .ledger{display:grid;grid-template-columns:1.1fr 1fr;margin-top:48px;border-radius:var(--r);overflow:hidden;box-shadow:0 1px 0 var(--line),0 24px 48px -28px rgba(15,30,61,.45)}
+  .ledger-col{padding:40px 38px}
+  .ledger-covers{background:var(--navy);color:#D3DBEC}
+  .ledger-pharm{background:var(--white)}
+  .ledger-col h3{font-family:var(--display);font-weight:800;font-size:1.4rem;line-height:1.2;margin-bottom:6px}
+  .ledger-covers h3{color:var(--white)}
+  .ledger-pharm h3{color:var(--navy)}
   .ledger-col .tag{font-size:.95rem;font-weight:600;margin-bottom:22px}
-  .ledger-col:first-child .tag{color:var(--crimson)}
-  .ledger-col:last-child .tag{color:var(--ink-soft)}
+  .ledger-covers .tag{color:#F0A9B1}
+  .ledger-pharm .tag{color:var(--ink-soft)}
   .ledger ul{list-style:none}
-  .ledger li{padding:11px 0;border-top:1px solid var(--line);font-size:.98rem}
+  .ledger li{padding:12px 0 12px 30px;border-top:1px solid var(--line);font-size:.98rem;position:relative}
+  .ledger-covers li{border-top-color:rgba(255,255,255,.14)}
   .ledger li:first-child{border-top:none}
-  .ledger li b{font-weight:600;color:var(--navy)}
-  .ledger-note{margin-top:20px;font-size:.92rem;color:var(--ink-soft);max-width:720px}
-  @media(max-width:760px){.ledger{grid-template-columns:1fr}.ledger-col:first-child{border-right:none;border-bottom:1.5px solid var(--navy)}}
+  .ledger li::before{content:"";position:absolute;left:2px;top:21px;width:12px;height:7px;border-left:2.5px solid var(--crimson);border-bottom:2.5px solid var(--crimson);transform:rotate(-45deg)}
+  .ledger-covers li::before{border-color:#F0A9B1}
+  .ledger-pharm li::before{width:12px;height:0;border-left:none;border-bottom:2.5px solid var(--ink-soft);transform:none;top:24px}
+  .ledger-covers li b{color:var(--white);font-weight:600}
+  .ledger-pharm li b{color:var(--navy);font-weight:600}
+  @media(max-width:780px){.ledger{grid-template-columns:1fr}.ledger-col{padding:32px 26px}}
 
-  /* meds */
+  /* ---------- medications ---------- */
   .meds{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}
-  .med{background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--crimson);padding:34px 32px}
-  .med h3{font-family:var(--display);font-weight:800;font-size:1.55rem;color:var(--navy)}
-  .med .alias{color:var(--ink-soft);font-size:.95rem;margin:4px 0 18px}
-  .med .stat{font-family:var(--display);font-weight:800;font-size:2.1rem;color:var(--crimson);line-height:1}
-  .med .statlab{font-size:.9rem;color:var(--ink-soft);margin:6px 0 16px}
-  .med p{font-size:.98rem;color:var(--ink-soft)}
-  @media(max-width:760px){.meds{grid-template-columns:1fr}}
+  .med{border:1px solid var(--line);border-radius:var(--r);padding:34px 32px;background:var(--white)}
+  .med h3{font-family:var(--display);font-weight:800;font-size:1.65rem;color:var(--navy);line-height:1.15}
+  .med .alias{color:var(--ink-soft);font-size:.95rem;margin:6px 0 26px}
+  .bar{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .bar .stat{font-family:var(--display);font-weight:900;font-size:2.6rem;color:var(--crimson);line-height:1;letter-spacing:-.02em}
+  .track{height:10px;background:var(--sky);border-radius:5px;overflow:hidden;margin-bottom:10px}
+  .track i{display:block;height:100%;background:var(--crimson);border-radius:5px}
+  .med .statlab{font-size:.9rem;color:var(--ink-soft);margin-bottom:20px}
+  .med .desc{font-size:.98rem;color:var(--ink-soft);padding-top:18px;border-top:1px solid var(--line)}
+  @media(max-width:780px){.meds{grid-template-columns:1fr}.med{padding:28px 24px}}
 
-  /* doctor */
-  .doctor{background:var(--navy);color:var(--white)}
-  .doctor .kicker{color:#E8B6BD}
+  /* ---------- doctor ---------- */
+  .doctor{background:var(--navy);color:var(--white);position:relative}
+  .doctor .kicker{color:#F0A9B1}
   .doctor h2{color:var(--white)}
-  .doctor-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:start}
-  .doctor p{color:#C9D3E8;margin-bottom:18px}
+  .doctor-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start}
+  .doctor-figure{position:relative;max-width:380px}
+  .doctor-figure::before{content:"";position:absolute;inset:22px -22px -22px 22px;background:var(--crimson);border-radius:var(--r)}
+  .doctor-photo{position:relative;width:100%;height:auto;border-radius:var(--r)}
+  .doctor-photo-cap{font-size:.86rem;color:#AEB9D3;margin-top:40px}
+  .doctor p{color:#C9D3E8;margin-bottom:18px;max-width:38em}
   .doctor p b{color:var(--white);font-weight:600}
-  .cred{border-left:3px solid var(--crimson);padding:4px 0 4px 22px;margin-top:8px}
-  .cred li{list-style:none;padding:9px 0;color:#C9D3E8;font-size:.97rem}
-  .cred li b{color:var(--white);font-weight:600}
-  @media(max-width:820px){.doctor-grid{grid-template-columns:1fr;gap:36px}}
-  .doctor-photo{width:100%;max-width:320px;height:auto;border-radius:10px;border:3px solid rgba(255,255,255,.16);box-shadow:0 18px 40px rgba(0,0,0,.35);margin-bottom:26px}
-  .doctor-photo-cap{font-size:.85rem;color:#C9D3E8;margin:-14px 0 24px}
-  @media(max-width:820px){.doctor-photo{max-width:260px}}
+  .cred{list-style:none;margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);overflow:hidden}
+  .cred li{background:var(--navy);padding:18px 20px;color:#C9D3E8;font-size:.94rem;line-height:1.5}
+  .cred li b{display:block;color:var(--white);font-weight:600;margin-bottom:2px}
+  @media(max-width:860px){.doctor-grid{grid-template-columns:1fr;gap:56px}.doctor-figure{max-width:280px}}
+  @media(max-width:560px){.cred{grid-template-columns:1fr}}
 
-  /* qualify */
-  .qualify .qlist{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;margin-top:40px;max-width:860px}
-  .qualify .qlist div{padding:16px 0;border-top:1px solid var(--line);font-size:1rem}
-  .qualify .qlist b{font-weight:600;color:var(--navy)}
-  @media(max-width:720px){.qualify .qlist{grid-template-columns:1fr}}
+  /* ---------- who qualifies ---------- */
+  .qualify{background:var(--sky)}
+  .qlist{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;max-width:940px}
+  .qlist li{background:var(--white);border-radius:var(--r);padding:18px 20px 18px 56px;position:relative;font-size:1rem;border:1px solid var(--line)}
+  .qlist li::before{content:"";position:absolute;left:18px;top:19px;width:24px;height:24px;border-radius:50%;background:var(--crimson)}
+  .qlist li::after{content:"";position:absolute;left:25px;top:26px;width:10px;height:5px;border-left:2px solid var(--white);border-bottom:2px solid var(--white);transform:rotate(-45deg)}
+  .qlist b{font-weight:600;color:var(--navy)}
+  .qualify .cta{margin-top:40px}
+  @media(max-width:720px){.qlist{grid-template-columns:1fr}}
 
-  /* price */
-  .price{background:var(--crimson);color:var(--white);text-align:center}
-  .price .kicker{color:#F3C7C7}
+  /* ---------- price: a membership card on the crimson field ---------- */
+  .price{background:var(--crimson);color:var(--white)}
+  .price-grid{display:grid;grid-template-columns:1fr minmax(0,460px);gap:64px;align-items:center}
+  .price .kicker{color:#F6CDD1}
   .price h2{color:var(--white)}
-  .price .amount{font-family:var(--display);font-weight:900;font-size:clamp(4.5rem,10vw,7rem);line-height:1;margin:18px 0 4px}
-  .price .amount sup{font-size:.38em;vertical-align:super;font-weight:800}
-  .price .per{color:#FCE6E6;font-size:1.1rem;margin-bottom:34px}
-  .price ul{list-style:none;max-width:460px;margin:0 auto 38px;text-align:left}
-  .price li{padding:11px 0 11px 34px;border-top:1px solid rgba(255,255,255,.22);position:relative;font-size:1rem;color:#FCE6E6}
-  .price li::before{content:"";position:absolute;left:4px;top:18px;width:14px;height:8px;border-left:2.5px solid var(--white);border-bottom:2.5px solid var(--white);transform:rotate(-45deg)}
-  .price li:first-child{border-top:none}
-  .price .fine{margin-top:22px;font-size:.88rem;color:#F3C7C7;max-width:520px;margin-left:auto;margin-right:auto}
+  .price .sub{color:#FDE9EA}
+  .price .fine{margin-top:22px;font-size:.88rem;color:#F6CDD1;max-width:34em}
+  .card{background:var(--white);color:var(--ink);border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(15,30,61,.7)}
+  .card-head{background:var(--navy);color:var(--white);display:flex;align-items:center;gap:12px;padding:18px 26px;font-family:var(--display);font-weight:800;font-size:1.08rem;border-bottom:5px solid var(--white);box-shadow:0 5px 0 var(--navy)}
+  .card-head img{width:30px;height:30px}
+  .card-body{padding:32px 30px 30px}
+  .amount{font-family:var(--display);font-weight:900;font-size:clamp(4.2rem,9vw,5.6rem);line-height:1;color:var(--navy);letter-spacing:-.03em}
+  .amount sup{font-size:.4em;vertical-align:super;font-weight:800;color:var(--crimson);margin-right:2px}
+  .amount small{font-family:var(--sans);font-size:1rem;font-weight:600;color:var(--ink-soft);letter-spacing:0;margin-left:6px}
+  .per{color:var(--ink-soft);font-size:.95rem;margin:8px 0 22px}
+  .card ul{list-style:none;margin-bottom:26px}
+  .card li{padding:10px 0 10px 30px;border-top:1px solid var(--line);position:relative;font-size:.97rem}
+  .card li:first-child{border-top:none}
+  .card li::before{content:"";position:absolute;left:3px;top:18px;width:12px;height:7px;border-left:2.5px solid var(--crimson);border-bottom:2.5px solid var(--crimson);transform:rotate(-45deg)}
+  .card .btn{width:100%;text-align:center}
+  @media(max-width:860px){.price-grid{grid-template-columns:1fr;gap:40px}}
 
-  /* faq */
-  .faq details{border-top:1px solid var(--line);max-width:820px}
+  /* ---------- faq ---------- */
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.6fr;gap:64px;align-items:start}
+  .faq-head{position:sticky;top:110px}
+  .faq-head p:not(.kicker){color:var(--ink-soft)}
+  .faq-head a{color:var(--crimson);font-weight:600}
+  .faq details{border-top:1px solid var(--line)}
   .faq details:last-of-type{border-bottom:1px solid var(--line)}
-  .faq summary{cursor:pointer;padding:22px 40px 22px 2px;font-weight:600;font-size:1.08rem;color:var(--navy);list-style:none;position:relative}
+  .faq summary{cursor:pointer;padding:22px 48px 22px 2px;font-weight:600;font-size:1.08rem;color:var(--navy);list-style:none;position:relative}
+  .faq summary:hover{color:var(--crimson)}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--display);font-size:1.6rem;color:var(--crimson);font-weight:700}
-  .faq details[open] summary::after{content:"–"}
-  .faq .a{padding:0 2px 24px;color:var(--ink-soft);max-width:720px}
+  .faq summary::after{content:"";position:absolute;right:10px;top:50%;width:10px;height:10px;border-right:2.5px solid var(--crimson);border-bottom:2.5px solid var(--crimson);transform:translateY(-70%) rotate(45deg);transition:transform .2s ease}
+  .faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+  .faq .a{padding:0 2px 24px;color:var(--ink-soft);max-width:40em}
+  .faq .a a{color:var(--crimson)}
   .faq .a p+p{margin-top:12px}
+  @media(max-width:860px){.faq-grid{grid-template-columns:1fr;gap:28px}.faq-head{position:static}}
 
-  /* footer */
-  footer{background:var(--navy);color:#9FACC9;padding:64px 0 48px;font-size:.9rem}
+  /* ---------- footer ---------- */
+  footer{background:var(--navy);color:#9FACC9;padding:0 0 48px;font-size:.9rem}
+  footer .hem{background:linear-gradient(var(--crimson) 0 12px,var(--white) 12px 100%);height:17px;margin-bottom:64px}
   footer .cols{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;margin-bottom:44px}
   footer .fbrand{display:flex;align-items:center;gap:10px;margin-bottom:18px}
   footer .fbrand .word{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--white)}
   footer a{color:#C9D3E8}
   footer .legal-links{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:26px}
-  footer .disc{line-height:1.7;border-top:1px solid var(--navy-soft);padding-top:26px}
+  footer .legal-links a{color:var(--white);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3)}
+  footer .legal-links a:hover{border-bottom-color:var(--white)}
+  footer .disc{line-height:1.7;border-top:1px solid var(--navy-2);padding-top:26px;font-size:.85rem}
   footer .disc p+p{margin-top:10px}
   @media(max-width:760px){footer .cols{grid-template-columns:1fr;gap:30px}}
 
-  /* modal */
+  /* ---------- mobile CTA bar ---------- */
+  .mobile-cta{display:none}
+  @media(max-width:720px){
+    .mobile-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:12px;align-items:center;justify-content:space-between;background:var(--white);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px -12px rgba(15,30,61,.35)}
+    .mobile-cta p{font-size:.85rem;line-height:1.3;color:var(--ink-soft)}
+    .mobile-cta p b{display:block;color:var(--navy);font-size:1rem}
+    .mobile-cta .btn{padding:11px 18px;font-size:.95rem}
+    body{padding-bottom:76px}
+    .btn-nav{display:none}
+  }
+
+  /* ---------- eligibility modal ---------- */
   .modal-back{display:none;position:fixed;inset:0;background:rgba(15,30,61,.72);z-index:100;overflow-y:auto;padding:32px 16px}
-  .modal-back.open{display:block}
-  .modal{background:var(--paper);max-width:560px;margin:4vh auto;border-radius:8px;padding:40px 38px;position:relative;border-top:6px solid var(--crimson)}
-  .modal h3{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--navy);margin-bottom:8px}
+  .modal-back.open{display:block;animation:fade .2s ease}
+  .modal-back.open .modal{animation:rise .25s cubic-bezier(.2,.7,.2,1)}
+  @keyframes fade{from{opacity:0}}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}}
+  .modal{background:var(--white);max-width:560px;margin:4vh auto;border-radius:12px;padding:40px 38px;position:relative;border-top:8px solid var(--crimson)}
+  .modal h3{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--navy);margin-bottom:8px}
   .modal .mnote{font-size:.88rem;color:var(--ink-soft);margin-bottom:26px}
   .modal .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.7rem;color:var(--ink-soft);cursor:pointer;line-height:1;padding:6px}
   .q{margin-bottom:22px}
   .q label.ql{display:block;font-weight:600;color:var(--navy);margin-bottom:10px;font-size:1rem}
   .optrow{display:flex;gap:10px;flex-wrap:wrap}
-  .opt{border:1.5px solid var(--line);background:var(--white);border-radius:5px;padding:10px 18px;font-size:.95rem;cursor:pointer;font-weight:500;color:var(--ink)}
+  .opt{border:1.5px solid var(--line);background:var(--white);border-radius:6px;padding:10px 20px;font-size:.95rem;cursor:pointer;font-weight:600;color:var(--ink);font-family:var(--sans);transition:border-color .15s ease}
+  .opt:hover{border-color:var(--navy)}
   .opt.sel{border-color:var(--crimson);background:var(--crimson);color:var(--white)}
   .bmirow{display:flex;gap:10px;flex-wrap:wrap}
-  .bmirow input{width:86px;padding:10px 12px;border:1.5px solid var(--line);border-radius:5px;font-size:1rem;font-family:var(--sans);background:var(--white)}
+  .bmirow input{width:86px;padding:10px 12px;border:1.5px solid var(--line);border-radius:6px;font-size:1rem;font-family:var(--sans);background:var(--white)}
+  .bmirow input:focus{border-color:var(--navy);outline:none}
   .bmirow .unit{align-self:center;font-size:.9rem;color:var(--ink-soft)}
   .bmi-out{margin-top:10px;font-size:.95rem;font-weight:600;color:var(--navy)}
-  .verdict{margin-top:8px;padding:18px 20px;border-radius:6px;font-size:.96rem;display:none}
+  .verdict{margin-top:8px;padding:18px 20px;border-radius:8px;font-size:.96rem;display:none}
   .verdict.show{display:block}
   .verdict.go{background:#EAF3EC;border:1px solid #BFD9C6;color:#1E4D2B}
   .verdict.stop{background:#F9ECEA;border:1px solid #E4C3BE;color:var(--crimson-deep)}
-  .verdict.talk{background:#F3EFE4;border:1px solid var(--line);color:var(--ink)}
+  .verdict.talk{background:var(--sky);border:1px solid var(--line);color:var(--ink)}
   .modal .btn{width:100%;text-align:center;margin-top:6px}
   .modal .btn[disabled]{opacity:.45;cursor:not-allowed}
 </style>
@@ -284,7 +324,7 @@
 <nav aria-label="Main">
   <div class="nav-inner">
     <a class="brand" href="#top">
-      <img class="mark" src="/logo.svg" width="34" height="34" alt="">
+      <img class="mark" src="/logo.svg" width="36" height="36" alt="">
       <span class="word">GLP <em>Tennessee</em></span>
     </a>
     <div class="nav-links">
@@ -301,71 +341,76 @@
   <div class="wrap hero-grid">
     <div class="hero-inner">
       <h1>Telehealth weight loss built for Tennessee.</h1>
-      <p class="lede">Lose weight with the help of GLP-1 agonist like Zepbound®/Mounjaro® (Tirzepatide) and Wegovy®/Ozempic® (Semaglutide) prescribed by a doctor for $99/month. If treatment is right for you, your prescription goes straight to the pharmacy of your choice within 24 hours — you pay them for the medication directly. No markups. No middlemen. No contracts — cancel anytime.</p>
+      <p class="lede">A Tennessee doctor evaluates you by video and, if it's right for you, prescribes tirzepatide (Zepbound®, Mounjaro®) or semaglutide (Wegovy®, Ozempic®) to the pharmacy you choose within 24 hours. $99 a month for the care. You pay the pharmacy directly for the medication, with no markups and no contract.</p>
       <div class="cta-row">
-        <a href="#" class="btn btn-crimson btn-white" onclick="openElig(event)">Check my eligibility</a>
+        <a href="#" class="btn btn-white" onclick="openElig(event)">Check my eligibility</a>
         <a href="#how" class="btn btn-ghost">See how it works</a>
       </div>
-      <p class="fine">Membership covers your medical care. A prescription is written only if it's medically appropriate after your evaluation — and if it isn't, you will receive a full refund.</p>
+      <p class="fine">A prescription is written only if it's medically appropriate after your evaluation. If it isn't, your first month is refunded in full.</p>
+      <div class="doc-chip">
+        <img src="/dr-merrick.webp" width="58" height="58" alt="">
+        <p><b>William B. Merrick, DO</b>Board-certified internist. Tennessee license No. 4267.</p>
+      </div>
     </div>
     <img class="hero-mark" src="/logo.svg" alt="">
   </div>
+  <div class="hem" aria-hidden="true"></div>
 </header>
 
 <section id="how">
   <div class="wrap">
     <p class="kicker">How it works</p>
     <h2>Three steps. No runaround.</h2>
-    <p class="sub">The whole thing is built to be the opposite of the big telehealth mills: one Tennessee physician, a clear price, and your pharmacy — not ours.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
+    <p class="sub">The opposite of the big telehealth mills: one Tennessee physician, a clear price, and your pharmacy, not ours.</p>
+    <ol class="steps">
+      <li class="step">
+        <div class="star" aria-hidden="true"><svg viewBox="0 0 64 64"><polygon fill="#B5182B" points="32,3 40.2,22.7 61.5,24.4 45.3,38.3 50.2,59.1 32,48 13.8,59.1 18.7,38.3 2.5,24.4 23.8,22.7"/></svg><span>1</span></div>
         <h3>Join and tell us your history</h3>
-        <p>Start your $99/month membership, then complete a secure medical intake — your health history, medications, weight history, and the pharmacy you want to use.</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <h3>Initial video evaluation with Dr. Merrick</h3>
-        <p>A real visit with the physician who'll be managing your care. He reviews your history, talks through semaglutide vs. tirzepatide, and decides with you whether treatment is appropriate.</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
+        <p>Start your $99/month membership, then complete a secure medical intake: your health history, medications, weight history, and the pharmacy you want to use.</p>
+      </li>
+      <li class="step">
+        <div class="star" aria-hidden="true"><svg viewBox="0 0 64 64"><polygon fill="#B5182B" points="32,3 40.2,22.7 61.5,24.4 45.3,38.3 50.2,59.1 32,48 13.8,59.1 18.7,38.3 2.5,24.4 23.8,22.7"/></svg><span>2</span></div>
+        <h3>Video evaluation with Dr. Merrick</h3>
+        <p>A real visit with the physician who'll manage your care. He reviews your history, talks through semaglutide vs. tirzepatide, and decides with you whether treatment is appropriate.</p>
+      </li>
+      <li class="step">
+        <div class="star" aria-hidden="true"><svg viewBox="0 0 64 64"><polygon fill="#B5182B" points="32,3 40.2,22.7 61.5,24.4 45.3,38.3 50.2,59.1 32,48 13.8,59.1 18.7,38.3 2.5,24.4 23.8,22.7"/></svg><span>3</span></div>
         <h3>Fill at your pharmacy, follow up monthly</h3>
-        <p>Your prescription is sent to the pharmacy of your choice. Each month: a check-in on progress and side effects, dose adjustments when you're ready, and refills handled.</p>
-      </div>
-    </div>
+        <p>Your prescription goes to the pharmacy you choose. Each month: a check-in on progress and side effects, dose adjustments when you're ready, and refills handled.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
 <section class="ledger-sec" id="ledger">
   <div class="wrap">
     <p class="kicker">The straight deal</p>
-    <h2>Exactly what $99 covers — and what it doesn't.</h2>
+    <h2>Exactly what $99 covers, and what it doesn't.</h2>
     <p class="sub">Most GLP-1 sites bundle the medication so you can't see what you're paying for. We don't sell medication at all, so there's nothing to hide.</p>
     <div class="ledger">
-      <div class="ledger-col">
+      <div class="ledger-col ledger-covers">
         <h3>Your membership covers</h3>
         <p class="tag">$99/month, cancel anytime</p>
         <ul>
           <li><b>Initial video evaluation</b> with Dr. Merrick</li>
-          <li><b>Your prescription</b>, sent to the pharmacy you choose every month— if treatment is medically appropriate</li>
+          <li><b>Your prescription</b>, sent every month to the pharmacy you choose, if treatment is medically appropriate</li>
           <li><b>Monthly follow-ups</b> and progress check-ins as needed</li>
           <li><b>Dose titration</b> on the standard escalation schedule, adjusted to how you're tolerating it</li>
           <li><b>Side-effect management</b> and messaging with the practice between visits</li>
           <li><b>Refills and pharmacy coordination</b>, including prior-authorization paperwork if your insurance covers the medication</li>
         </ul>
       </div>
-      <div class="ledger-col">
+      <div class="ledger-col ledger-pharm">
         <h3>You pay your pharmacy for</h3>
-        <p class="tag">At their price — we add nothing</p>
+        <p class="tag">At their price. We add nothing.</p>
         <ul>
           <li><b>The medication itself.</b> Depending on coverage and the option you choose, that may be an insurance copay or a cash price.</li>
-          <li>Many members use the manufacturers' direct self-pay programs (LillyDirect for Zepbound®, NovoCare for Wegovy®) or their local pharmacy — whatever's cheapest for you. Dr. Merrick will point you to the best option for your situation.</li>
-          <li><b>Any labs</b>, if needed — ordered to your local lab at their price, and many members already have recent labs that work fine.</li>
+          <li>Many members use the manufacturers' direct self-pay programs (LillyDirect for Zepbound®, NovoCare for Wegovy®) or their local pharmacy, whichever is cheapest. Dr. Merrick will point you to the best option for your situation.</li>
+          <li><b>Any labs</b>, if needed, ordered to your local lab at their price. Many members already have recent labs that work fine.</li>
         </ul>
       </div>
     </div>
-    <p class="ledger-note">We think a doctor should make money from doctoring — not from marking up your medicine. That's the whole business model, and it's why the price can stay at $99.</p>
+    <p class="note">We think a doctor should make money from doctoring, not from marking up your medicine. That's the whole business model, and it's why the price can stay at $99.</p>
   </div>
 </section>
 
@@ -373,43 +418,47 @@
   <div class="wrap">
     <p class="kicker">The medications</p>
     <h2>Two proven options. One honest conversation about which fits you.</h2>
-    <p class="sub">Both are FDA-approved GLP-1 class medications taken as a once-weekly injection. Dr. Merrick prescribes based on your history, your goals, your tolerance — and what you can actually get and afford.</p>
+    <p class="sub">Both are FDA-approved GLP-1 class medications taken as a once-weekly injection. Dr. Merrick prescribes based on your history, your goals, your tolerance, and what you can actually get and afford.</p>
     <div class="meds">
       <div class="med">
         <h3>Semaglutide</h3>
-        <p class="alias">Wegovy® — the weight-management form of the medicine in Ozempic®</p>
-        <p class="stat">≈15%</p>
-        <p class="statlab">average body-weight loss in its pivotal 68-week clinical trial</p>
-        <p>The most widely used GLP-1 for weight loss, with the longest track record. Often the easier option to source and the one more insurance plans recognize.</p>
+        <p class="alias">Wegovy®, the weight-management form of the medicine in Ozempic®</p>
+        <div class="bar"><p class="stat">≈15%</p></div>
+        <div class="track" role="img" aria-label="About 15 percent average body-weight loss"><i style="width:60%"></i></div>
+        <p class="statlab">Average body-weight loss in its pivotal 68-week clinical trial</p>
+        <p class="desc">The most widely used GLP-1 for weight loss, with the longest track record. Often the easier option to source and the one more insurance plans recognize.</p>
       </div>
       <div class="med">
         <h3>Tirzepatide</h3>
-        <p class="alias">Zepbound® — the weight-management form of the medicine in Mounjaro®</p>
-        <p class="stat">≈21%</p>
-        <p class="statlab">average body-weight loss at the top dose in its pivotal 72-week clinical trial</p>
-        <p>A dual GIP/GLP-1 agonist — the strongest average weight-loss results of any approved medication. Frequently the better choice when maximum effect is the goal.</p>
+        <p class="alias">Zepbound®, the weight-management form of the medicine in Mounjaro®</p>
+        <div class="bar"><p class="stat">≈21%</p></div>
+        <div class="track" role="img" aria-label="About 21 percent average body-weight loss"><i style="width:84%"></i></div>
+        <p class="statlab">Average body-weight loss at the top dose in its pivotal 72-week clinical trial</p>
+        <p class="desc">A dual GIP/GLP-1 agonist with the strongest average weight-loss results of any approved medication. Frequently the better choice when maximum effect is the goal.</p>
       </div>
     </div>
-    <p class="ledger-note" style="margin-top:28px">Trial results are averages — individual results vary, and medication only works alongside the nutrition and habit changes Dr. Merrick will work through with you. GLP Tennessee is an independent medical practice, not affiliated with Novo Nordisk or Eli Lilly.</p>
+    <p class="note">Trial results are averages. Individual results vary, and medication only works alongside the nutrition and habit changes Dr. Merrick will work through with you. GLP Tennessee is an independent medical practice, not affiliated with Novo Nordisk or Eli Lilly.</p>
   </div>
 </section>
 
-<section class="doctor">
+<section class="doctor" id="physician">
   <div class="wrap doctor-grid">
+    <div>
+      <figure class="doctor-figure">
+        <img class="doctor-photo" src="/dr-merrick.webp" width="480" height="600" alt="Dr. William B. Merrick, DO" loading="lazy">
+      </figure>
+      <p class="doctor-photo-cap">William B. Merrick, DO. Internal medicine, McKenzie, Tennessee.</p>
+    </div>
     <div>
       <p class="kicker">Your physician</p>
       <h2>One doctor. Licensed here. Practicing here.</h2>
-      <p><b>William B. Merrick, DO</b> is a board-certified internal medicine physician with more than ten years of clinical experience. He practices hospital medicine in West Tennessee — the doctor you'd see if you were admitted, not a contractor in another state reading a questionnaire.</p>
-      <p>He built GLP Tennessee because he kept watching the same thing happen: patients paying inflated bundled prices to out-of-state telehealth companies for medications their own pharmacy could fill, with no real physician relationship behind the prescription. This practice is the alternative — direct care, transparent pricing, and a doctor who answers for his decisions.</p>
-    </div>
-    <div>
-      <img class="doctor-photo" src="data:image/webp;base64,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" width="480" height="600" alt="Dr. William B. Merrick, DO">
-      <p class="doctor-photo-cap">William B. Merrick, DO · Internal medicine · McKenzie, Tennessee</p>
+      <p><b>William B. Merrick, DO</b> is a board-certified internal medicine physician with more than ten years of clinical experience. He practices hospital medicine in West Tennessee: the doctor you'd see if you were admitted, not a contractor in another state reading a questionnaire.</p>
+      <p>He built GLP Tennessee after watching patients pay inflated bundled prices to out-of-state telehealth companies for medications their own pharmacy could fill, with no real physician relationship behind the prescription. This practice is the alternative: direct care, transparent pricing, and a doctor who answers for his decisions.</p>
       <ul class="cred">
-        <li><b>Board-certified in internal medicine</b> — Doctor of Osteopathic Medicine, 10+ years of clinical and hospitalist experience</li>
-        <li><b>Licensed in Tennessee</b> — Osteopathic Physician License No. 4267, Tennessee Board of Osteopathic Examination · NPI 1497231054</li>
-        <li><b>Every visit, every follow-up</b> is with Dr. Merrick — no rotating provider pool</li>
-        <li><b>Care delivered through</b> William B. Merrick, DO, PLLC, a Tennessee medical practice</li>
+        <li><b>Board-certified in internal medicine</b>Doctor of Osteopathic Medicine, 10+ years of clinical and hospitalist experience</li>
+        <li><b>Licensed in Tennessee</b>Osteopathic Physician License No. 4267, Tennessee Board of Osteopathic Examination. NPI 1497231054.</li>
+        <li><b>Every visit, every follow-up</b>is with Dr. Merrick. No rotating provider pool.</li>
+        <li><b>Care delivered through</b>William B. Merrick, DO, PLLC, a Tennessee medical practice</li>
       </ul>
     </div>
   </div>
@@ -420,82 +469,94 @@
     <p class="kicker">Who qualifies</p>
     <h2>The basics, before you spend a dollar.</h2>
     <p class="sub">GLP-1 medications are FDA-indicated for adults with a BMI of 30 or higher, or 27+ with a weight-related condition like high blood pressure, prediabetes, sleep apnea, or high cholesterol. The eligibility check takes about a minute and nothing you enter is saved.</p>
-    <div class="qlist">
-      <div><b>Tennessee resident</b> — you'll need to be physically in Tennessee for visits</div>
-      <div><b>18 or older</b></div>
-      <div><b>BMI 30+</b>, or 27+ with a weight-related health condition</div>
-      <div><b>Not pregnant</b>, breastfeeding, or planning pregnancy</div>
-      <div><b>No personal or family history</b> of medullary thyroid carcinoma or MEN 2</div>
-      <div><b>Full history reviewed by the doctor</b> — conditions like pancreatitis or gastroparesis get an individual look, not an automatic no</div>
-    </div>
-    <p style="margin-top:36px"><a href="#" class="btn btn-crimson" onclick="openElig(event)">Check my eligibility</a></p>
+    <ul class="qlist">
+      <li><b>Tennessee resident</b>. You'll need to be physically in Tennessee for visits.</li>
+      <li><b>18 or older</b></li>
+      <li><b>BMI 30+</b>, or 27+ with a weight-related health condition</li>
+      <li><b>Not pregnant</b>, breastfeeding, or planning pregnancy</li>
+      <li><b>No personal or family history</b> of medullary thyroid carcinoma or MEN 2</li>
+      <li><b>Full history reviewed by the doctor</b>. Conditions like pancreatitis or gastroparesis get an individual look, not an automatic no.</li>
+    </ul>
+    <p class="cta"><a href="#" class="btn btn-crimson" onclick="openElig(event)">Check my eligibility</a></p>
   </div>
 </section>
 
 <section class="price" id="join">
-  <div class="wrap">
-    <p class="kicker">Membership</p>
-    <h2>One price. Everything medical.</h2>
-    <div class="amount"><sup>$</sup>99</div>
-    <p class="per">per month · cancel anytime · no sign-up fee, no contract</p>
-    <ul>
-      <li>Video evaluation and ongoing care with Dr. Merrick</li>
-      <li>Semaglutide or tirzepatide prescribed to your pharmacy, when appropriate</li>
-      <li>Monthly follow-ups, dose titration, and refill management</li>
-      <li>Messaging with the practice between visits</li>
-      <li>Full refund of your first month if treatment isn't right for you</li>
-    </ul>
-    <a href="#" class="btn btn-white" onclick="openElig(event)">Start with the eligibility check</a>
-    <p class="fine">Medication is purchased separately from your pharmacy at their price. A prescription is issued only when medically appropriate in Dr. Merrick's clinical judgment.</p>
+  <div class="wrap price-grid">
+    <div>
+      <p class="kicker">Membership</p>
+      <h2>One price. Everything medical.</h2>
+      <p class="sub">No sign-up fee, no contract, no medication markup. If Dr. Merrick decides treatment isn't right for you, your first month comes back in full.</p>
+      <p class="fine">Medication is purchased separately from your pharmacy at their price. A prescription is issued only when medically appropriate in Dr. Merrick's clinical judgment.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><img src="/logo.svg" width="30" height="30" alt="">GLP Tennessee membership</div>
+      <div class="card-body">
+        <div class="amount"><sup>$</sup>99<small>/month</small></div>
+        <p class="per">Cancel anytime from your billing portal.</p>
+        <ul>
+          <li>Video evaluation and ongoing care with Dr. Merrick</li>
+          <li>Semaglutide or tirzepatide prescribed to your pharmacy, when appropriate</li>
+          <li>Monthly follow-ups, dose titration, and refill management</li>
+          <li>Messaging with the practice between visits</li>
+          <li>Full refund of your first month if treatment isn't right for you</li>
+        </ul>
+        <a href="#" class="btn btn-crimson" onclick="openElig(event)">Start with the eligibility check</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="faq" id="faq">
-  <div class="wrap">
-    <p class="kicker">Questions</p>
-    <h2>Asked and answered.</h2>
-    <div style="margin-top:40px">
+  <div class="wrap faq-grid">
+    <div class="faq-head">
+      <p class="kicker">Questions</p>
+      <h2>Asked and answered.</h2>
+      <p>Something else? Email <a href="mailto:care@glptennessee.com">care@glptennessee.com</a>.</p>
+    </div>
+    <div>
       <details>
         <summary>Does the $99 include the medication?</summary>
-        <div class="a"><p>No — and that's on purpose. You buy the medication from your own pharmacy at their price, with zero markup from us. Depending on your insurance and the option you choose, members typically pay anywhere from a modest copay to a few hundred dollars a month cash through the manufacturers' direct programs. Dr. Merrick will help you find the cheapest legitimate route for your situation.</p></div>
+        <div class="a"><p>No, and that's on purpose. You buy the medication from your own pharmacy at their price, with zero markup from us. Depending on your insurance and the option you choose, members typically pay anywhere from a modest copay to a few hundred dollars a month cash through the manufacturers' direct programs. Dr. Merrick will help you find the cheapest legitimate route for your situation.</p></div>
       </details>
       <details>
         <summary>Will my insurance cover any of this?</summary>
-        <div class="a"><p>The membership itself is cash-pay — we don't bill insurance for visits, which is how the price stays simple. The medication is a different story: if your plan covers GLP-1s, your pharmacy bills your insurance like any other prescription, and we handle the prior-authorization paperwork as part of your membership.</p></div>
+        <div class="a"><p>The membership itself is cash-pay. We don't bill insurance for visits, which is how the price stays simple. The medication is a different story: if your plan covers GLP-1s, your pharmacy bills your insurance like any other prescription, and we handle the prior-authorization paperwork as part of your membership.</p></div>
       </details>
       <details>
         <summary>Is paying the membership a guarantee I'll get a prescription?</summary>
-        <div class="a"><p>No. You're paying for medical care from a physician, and Dr. Merrick only prescribes when it's medically appropriate — that's what makes this a medical practice and not a vending machine. If after your evaluation treatment isn't right for you, he'll tell you straight and refund your first month in full.</p></div>
+        <div class="a"><p>No. You're paying for medical care from a physician, and Dr. Merrick only prescribes when it's medically appropriate. That's what makes this a medical practice and not a vending machine. If after your evaluation treatment isn't right for you, he'll tell you straight and refund your first month in full.</p></div>
       </details>
       <details>
         <summary>Which pharmacy can I use?</summary>
-        <div class="a"><p>Any licensed pharmacy you choose — the one down the road, a big chain, or the manufacturers' own direct-to-patient programs (LillyDirect for Zepbound®, NovoCare for Wegovy®), which often have the best cash prices. The prescription is yours; where you fill it is your call.</p></div>
+        <div class="a"><p>Any licensed pharmacy you choose: the one down the road, a big chain, or the manufacturers' own direct-to-patient programs (LillyDirect for Zepbound®, NovoCare for Wegovy®), which often have the best cash prices. The prescription is yours; where you fill it is your call.</p></div>
       </details>
       <details>
         <summary>How do the visits work?</summary>
-        <div class="a"><p>By secure video, from anywhere in Tennessee. Your first visit is a real evaluation — history, goals, risks, and a plan. After that, monthly check-ins keep your dose titration on schedule and catch side effects early. You can message the practice between visits.</p></div>
+        <div class="a"><p>By secure video, from anywhere in Tennessee. Your first visit is a real evaluation: history, goals, risks, and a plan. After that, monthly check-ins keep your dose titration on schedule and catch side effects early. You can message the practice between visits.</p></div>
       </details>
       <details>
         <summary>How do I message the practice between visits?</summary>
-        <div class="a"><p>Through your secure <a href="https://glptennessee.akutehealth.com">patient portal</a> — the same place you completed your intake. Portal messages are encrypted, go straight to Dr. Merrick, and become part of your chart. We respond within one business day. Please don't send medical questions by regular email or text — they aren't secure, and we'll just redirect you to the portal.</p><p>Messaging is never for emergencies. If you think you're having one, call 911.</p></div>
+        <div class="a"><p>Through your secure <a href="https://glptennessee.akutehealth.com">patient portal</a>, the same place you completed your intake. Portal messages are encrypted, go straight to Dr. Merrick, and become part of your chart. We respond within one business day. Please don't send medical questions by regular email or text. They aren't secure, and we'll just redirect you to the portal.</p><p>Messaging is never for emergencies. If you think you're having one, call 911.</p></div>
       </details>
       <details>
         <summary>What are the side effects?</summary>
-        <div class="a"><p>The common ones are digestive — nausea, constipation, sometimes vomiting or reflux — mostly during dose increases, and usually manageable by titrating slowly, which is exactly what the monthly follow-ups are for. Serious risks are uncommon but real (pancreatitis, gallbladder problems, and a thyroid-tumor warning from rodent studies, which is why the thyroid history question matters). Dr. Merrick goes through all of it with you before anything is prescribed.</p></div>
+        <div class="a"><p>The common ones are digestive (nausea, constipation, sometimes vomiting or reflux), mostly during dose increases, and usually manageable by titrating slowly, which is exactly what the monthly follow-ups are for. Serious risks are uncommon but real: pancreatitis, gallbladder problems, and a thyroid-tumor warning from rodent studies, which is why the thyroid history question matters. Dr. Merrick goes through all of it with you before anything is prescribed.</p></div>
       </details>
       <details>
         <summary>Can I cancel?</summary>
-        <div class="a"><p>Anytime, from <a href="https://billing.stripe.com/p/login/4gM7sNehu4CUcef1PL7Zu01">your billing portal</a>, no phone call required. Your membership runs through the end of the period you've paid for. If you're on medication, Dr. Merrick will talk with you about how to stop or taper sensibly — don't just disappear on him.</p></div>
+        <div class="a"><p>Anytime, from <a href="https://billing.stripe.com/p/login/4gM7sNehu4CUcef1PL7Zu01">your billing portal</a>, no phone call required. Your membership runs through the end of the period you've paid for. If you're on medication, Dr. Merrick will talk with you about how to stop or taper sensibly, so please don't just disappear on him.</p></div>
       </details>
       <details>
         <summary>Why Tennessee only?</summary>
-        <div class="a"><p>Because that's where Dr. Merrick is licensed and lives. Telehealth law requires your doctor to be licensed in the state where you are — and frankly, a practice that serves one state well beats one that serves fifty states thinly.</p></div>
+        <div class="a"><p>Because that's where Dr. Merrick is licensed and lives. Telehealth law requires your doctor to be licensed in the state where you are. And frankly, a practice that serves one state well beats one that serves fifty states thinly.</p></div>
       </details>
     </div>
   </div>
 </section>
 
 <footer>
+  <div class="hem" aria-hidden="true"></div>
   <div class="wrap">
     <div class="cols">
       <div>
@@ -524,6 +585,11 @@
     </div>
   </div>
 </footer>
+
+<div class="mobile-cta">
+  <p><b>$99/month</b>Tennessee residents only</p>
+  <a href="#" class="btn btn-crimson" onclick="openElig(event)">Check eligibility</a>
+</div>
 
 <!-- ============ ELIGIBILITY MODAL ============ -->
 <div class="modal-back" id="eligBack" role="dialog" aria-modal="true" aria-labelledby="eligTitle">

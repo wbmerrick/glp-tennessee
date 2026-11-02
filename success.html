@@ -12,13 +12,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Besley:wght@700;800;900&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--crimson:#B5182B;--crimson-deep:#8E1222;--navy:#0F1E3D;--ink:#1D2638;--ink-soft:#4A5468;--paper:#FBF8F3;--line:#D9D1C2;--white:#fff;
+  :root{--crimson:#B5182B;--crimson-deep:#8E1222;--navy:#0F1E3D;--ink:#1D2638;--ink-soft:#4A5468;--paper:#FFFFFF;--line:#D9D1C2;--white:#fff;
     --display:'Besley',Georgia,serif;--sans:'Libre Franklin',system-ui,sans-serif}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
   .band{background:var(--crimson);color:var(--white);padding:70px 24px 64px;text-align:center}
   .band img{display:block;margin:0 auto 22px}
-  .band h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.015em;margin-bottom:12px}
+  .band h1{font-family:var(--display);font-weight:900;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.015em;margin-bottom:12px}
   .band p{color:#FCE6E6;max-width:540px;margin:0 auto;font-size:1.1rem}
   .wrap{max-width:720px;margin:0 auto;padding:64px 24px 80px}
   h2{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--navy);margin-bottom:34px}
@@ -27,10 +27,11 @@
   .step .num{font-family:var(--display);font-weight:900;font-size:2.1rem;color:var(--crimson);line-height:1;min-width:38px}
   .step h3{font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--navy);margin-bottom:8px}
   .step p{color:var(--ink-soft);font-size:1rem}
-  .btn{display:inline-block;background:var(--crimson);color:var(--white);font-weight:600;text-decoration:none;border-radius:5px;padding:13px 26px;margin-top:14px;transition:background-color .15s ease}
+  .btn{display:inline-block;background:var(--crimson);color:var(--white);font-weight:700;text-decoration:none;border-radius:6px;padding:13px 26px;margin-top:14px;transition:background-color .15s ease}
   .btn:hover{background:var(--crimson-deep)}
   :focus-visible{outline:3px solid var(--crimson);outline-offset:2px}
-  .ready{background:#F1EBE0;border-radius:8px;padding:28px 30px;margin-top:44px}
+  .hem{height:18px;background:linear-gradient(#fff 0 5px,var(--navy) 5px 100%)}
+  .ready{background:#EDF0F6;border-radius:8px;padding:28px 30px;margin-top:44px}
   .ready h3{font-family:var(--display);font-weight:800;color:var(--navy);font-size:1.15rem;margin-bottom:12px}
   .ready li{margin-left:20px;padding:4px 0;color:var(--ink-soft);font-size:.98rem}
   .foot{color:var(--ink-soft);font-size:.9rem;margin-top:44px}
@@ -49,6 +50,7 @@
   <h1 id="bandTitle">Confirming your payment</h1>
   <p id="bandText">Checking this checkout with Stripe before we show next steps.</p>
 </div>
+<div class="hem" aria-hidden="true"></div>
 
 <noscript>
   <div class="wrap">
