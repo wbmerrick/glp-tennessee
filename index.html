@@ -318,7 +318,9 @@
   .verdict.stop{background:#FBECEA;color:var(--crimson-deep)}
   .verdict.talk{background:var(--mist);color:var(--ink)}
   .modal .btn{width:100%;margin-top:6px}
-  .modal .btn[disabled]{opacity:.35;cursor:not-allowed}
+  .modal .btn[disabled],.modal .btn[aria-disabled="true"]{opacity:.35;cursor:not-allowed;pointer-events:none}
+  .pay-step{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+  .pay-note{font-size:.93rem;margin-bottom:10px}
   .modal .btn[disabled]:hover{background:var(--ink)}
 
   /* ---------- photography ---------- */
@@ -433,13 +435,13 @@
     <ol class="steps">
       <li class="step">
         <div class="num">1</div>
-        <h3>Join and complete your intake</h3>
-        <p>Start your $99/month membership, then fill out a secure medical intake: health history, medications, weight history, and the pharmacy you want to use.</p>
+        <h3>Complete your medical intake</h3>
+        <p>Free, about ten minutes, in our secure patient portal: health history, medications, weight history, and the pharmacy you want to use.</p>
       </li>
       <li class="step">
         <div class="num">2</div>
-        <h3>Video visit with Dr. Merrick</h3>
-        <p>He reviews your history, talks through tirzepatide vs. semaglutide, and decides with you whether treatment is appropriate.</p>
+        <h3>Join and meet Dr. Merrick</h3>
+        <p>Start your $99/month membership and book your video visit. He reviews your history, talks through tirzepatide vs. semaglutide, and decides with you whether treatment is appropriate.</p>
       </li>
       <li class="step">
         <div class="num">3</div>
@@ -648,7 +650,7 @@
   <div class="modal">
     <button class="close" aria-label="Close" onclick="closeElig()">×</button>
     <h3 id="eligTitle">Quick eligibility check</h3>
-    <p class="mnote">Takes about a minute. Your answers aren't saved or sent anywhere — this just checks the basics before you pay for anything. The real medical evaluation happens with Dr. Merrick after you join.</p>
+    <p class="mnote">Takes about a minute. Your answers aren't saved or sent anywhere — this just checks the basics. Next you'll complete your medical intake, then start your membership. The real medical evaluation happens at your video visit with Dr. Merrick.</p>
 
     <div class="q">
       <label class="ql">Are you a Tennessee resident, 18 or older?</label>
@@ -696,8 +698,12 @@
     </div>
 
     <div class="verdict" id="verdict"></div>
-    <button class="btn btn-crimson" id="checkoutBtn" disabled onclick="goCheckout()">Continue to secure checkout — $99/month</button>
-    <p class="mnote" style="margin-top:14px;margin-bottom:0">Payment is handled by Stripe. Full refund of your first month if Dr. Merrick determines treatment isn't appropriate for you.</p>
+    <a class="btn btn-crimson" id="checkoutBtn" aria-disabled="true" href="https://glptennessee.akutehealth.com/forms/6ad624f0329a6097a0d5d8f6" target="_blank" rel="noopener" onclick="return startIntake(event)">Step 1: Start my medical intake</a>
+    <div id="payStep" class="pay-step" hidden>
+      <p class="pay-note"><b>Finished your intake?</b> Start your membership to book your video visit. Use the same email you used for the intake.</p>
+      <button class="btn btn-outline" id="payBtn" onclick="goCheckout()">Step 2: Continue to secure checkout — $99/month</button>
+    </div>
+    <p class="mnote" style="margin-top:14px;margin-bottom:0">The intake opens in a new tab in our secure, HIPAA-compliant patient portal. Payment is handled by Stripe. Full refund of your first month if Dr. Merrick determines treatment isn't appropriate for you.</p>
   </div>
 </div>
 
@@ -753,7 +759,7 @@ document.querySelectorAll('.optrow').forEach(function(row){
 function evaluate(){
   var v = document.getElementById('verdict');
   var btn = document.getElementById('checkoutBtn');
-  v.className = 'verdict'; btn.disabled = true;
+  v.className = 'verdict'; btn.disabled = true; btn.setAttribute('aria-disabled','true'); document.getElementById('payStep').hidden = true;
 
   if(answers.tn===null || bmi===null || answers.preg===null || answers.mtc===null) return;
   if(bmi>=27 && bmi<30 && answers.comorb===null) return;
@@ -775,12 +781,19 @@ function evaluate(){
   }
   if(answers.mtc==='unsure'){
     show(v,'talk','You look eligible on the basics. Since you\'re unsure about the thyroid history, Dr. Merrick will go through it carefully at your first visit before anything is prescribed — and if it turns out treatment isn\'t appropriate, your first month is refunded in full.');
-    btn.disabled = false; return;
+    enableIntake(btn); return;
   }
-  show(v,'go','You meet the basic criteria. Next: start your membership, complete the medical intake, and get your video visit with Dr. Merrick scheduled.');
-  btn.disabled = false;
+  show(v,'go','You meet the basic criteria. Next: complete your medical intake, then start your membership and book your video visit with Dr. Merrick.');
+  enableIntake(btn);
 }
 
+function enableIntake(btn){ btn.disabled = false; btn.removeAttribute('aria-disabled'); }
+function startIntake(e){
+  var btn = document.getElementById('checkoutBtn');
+  if(btn.getAttribute('aria-disabled')==='true'){ e.preventDefault(); return false; }
+  document.getElementById('payStep').hidden = false;
+  return true;
+}
 function show(v, kind, msg){ v.classList.add('show', kind); v.textContent = msg; }
 
 function goCheckout(){

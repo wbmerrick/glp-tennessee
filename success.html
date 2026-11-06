@@ -64,18 +64,18 @@
   <div class="step">
     <div class="num">1</div>
     <div>
-      <h3>Complete your medical intake</h3>
-      <p>This is the real one — health history, medications, allergies, weight history, and the pharmacy you want your prescription sent to. It's handled in our secure, HIPAA-compliant patient portal and takes about ten minutes.</p>
-      <a class="btn" id="intakeBtn">Start my intake</a>
+      <h3>Schedule your video visit</h3>
+      <p>Pick a time for your video evaluation with Dr. Merrick. This is where the treatment decision actually gets made, using the intake you already completed.</p>
+      <a class="btn" id="bookBtn">Book my video visit</a>
     </div>
   </div>
 
   <div class="step">
     <div class="num">2</div>
     <div>
-      <h3>Schedule your video visit</h3>
-      <p>Pick a time for your 15-minute video evaluation with Dr. Merrick — this is where the treatment decision actually gets made. Please finish your intake before the visit so your time goes to the decision, not paperwork.</p>
-      <a class="btn" id="bookBtn">Book my video visit</a>
+      <h3>Haven't finished your intake?</h3>
+      <p>If you skipped it or didn't finish, complete it before your visit so your time goes to the decision, not paperwork. Use the same email you used at checkout.</p>
+      <a class="btn" id="intakeBtn" style="background:var(--navy)">Finish my intake</a>
     </div>
   </div>
 
@@ -88,7 +88,7 @@
   </div>
 
   <div class="ready">
-    <h3>Have these handy for your intake</h3>
+    <h3>Have these handy for your visit</h3>
     <ul>
       <li>Your current medication list, including supplements</li>
       <li>The name and location of your preferred pharmacy</li>
@@ -136,7 +136,7 @@ function showConfirmed(data){
   document.getElementById('intakeBtn').href = intake;
   document.getElementById('bookBtn').href = booking;
   document.getElementById('bandTitle').textContent = "You're in. Welcome.";
-  document.getElementById('bandText').textContent = 'Your membership is active and Stripe has emailed your receipt. Three things stand between you and your first visit with Dr. Merrick.';
+  document.getElementById('bandText').textContent = 'Your membership is active and Stripe has emailed your receipt. Next, book your video visit with Dr. Merrick.';
   document.getElementById('denied').hidden = true;
   document.getElementById('confirmed').hidden = false;
 }
