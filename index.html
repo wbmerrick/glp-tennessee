@@ -68,397 +68,446 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Besley:wght@500;700;800;900&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
+    --bg:#F7F4EF;
+    --card:#FFFFFF;
+    --ink:#141821;
+    --muted:#5E6472;
+    --line:#E6E1D8;
     --crimson:#B5182B;
     --crimson-deep:#8E1222;
     --navy:#0F1E3D;
-    --navy-2:#1B2C52;
-    --sky:#EDF0F6;
-    --ink:#18213A;
-    --ink-soft:#4A5468;
-    --line:#D8DEE9;
-    --white:#FFFFFF;
-    --display:'Besley',Georgia,serif;
-    --sans:'Libre Franklin',system-ui,-apple-system,sans-serif;
-    --r:8px;
+    --blush:#F7E4E1;
+    --mist:#E3E9F3;
+    --sand:#EFE7DA;
+    --sans:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+    --r-lg:28px;
+    --r-md:20px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-  body{font-family:var(--sans);color:var(--ink);background:var(--white);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
   img,svg{display:block}
   a{color:inherit}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 
-  /* ---------- buttons ---------- */
-  .btn{display:inline-block;font-family:var(--sans);font-weight:700;font-size:1.02rem;text-decoration:none;border:2px solid transparent;cursor:pointer;border-radius:6px;padding:14px 28px;line-height:1.2;transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .15s ease}
-  .btn:active{transform:translateY(1px)}
-  .btn-crimson{background:var(--crimson);color:var(--white)}
-  .btn-crimson:hover{background:var(--crimson-deep)}
-  .btn-white{background:var(--white);color:var(--crimson)}
-  .btn-white:hover{background:var(--navy);color:var(--white)}
-  .btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.6)}
-  .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
-  .btn-nav{padding:10px 20px;font-size:.92rem}
+  /* ---------- buttons: pills ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:700;font-size:1rem;text-decoration:none;border:1.5px solid transparent;cursor:pointer;border-radius:999px;padding:15px 30px;line-height:1.2;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+  .btn-dark,.btn-crimson{background:var(--ink);color:#fff}
+  .btn-dark:hover,.btn-crimson:hover{background:var(--crimson)}
+  .btn-light{background:#fff;color:var(--ink)}
+  .btn-light:hover{background:var(--blush)}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:#fff}
+  .btn-sm{padding:10px 20px;font-size:.92rem}
   :focus-visible{outline:3px solid var(--crimson);outline-offset:3px}
-  .hero :focus-visible,.doctor :focus-visible,.price :focus-visible,footer :focus-visible,.ledger-covers :focus-visible{outline-color:var(--white)}
 
-  /* ---------- top strip + nav ---------- */
-  .strip{background:var(--navy);color:#C9D3E8;font-size:.85rem;text-align:center;padding:9px 16px}
-  .strip strong{color:var(--white);font-weight:600}
-  nav{background:rgba(255,255,255,.96);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-  .nav-inner{display:flex;align-items:center;gap:28px;padding:14px 24px;max-width:1140px;margin:0 auto}
-  .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
-  .brand .mark{width:36px;height:36px}
-  .brand .word{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--navy);letter-spacing:-.01em;line-height:1}
-  .brand .word em{font-style:normal;color:var(--crimson)}
+  /* ---------- top bar + nav ---------- */
+  .strip{background:var(--ink);color:#D9DCE3;font-size:.84rem;text-align:center;padding:9px 16px}
+  .strip strong{color:#fff;font-weight:700}
+  nav{position:sticky;top:0;z-index:50;background:rgba(247,244,239,.92);backdrop-filter:saturate(1.4) blur(10px)}
+  .nav-inner{display:flex;align-items:center;gap:28px;padding:14px 24px;max-width:1200px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand .mark{width:32px;height:32px}
+  .brand .word{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;line-height:1}
   .nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
-  .nav-links a:not(.btn){text-decoration:none;font-size:.95rem;font-weight:500;color:var(--ink-soft);padding:4px 0;border-bottom:2px solid transparent}
-  .nav-links a:not(.btn):hover{color:var(--navy);border-bottom-color:var(--crimson)}
+  .nav-links a:not(.btn){text-decoration:none;font-size:.95rem;font-weight:600;color:var(--muted)}
+  .nav-links a:not(.btn):hover{color:var(--ink)}
   @media(max-width:880px){.nav-links a:not(.btn){display:none}}
-  @media(max-width:420px){.btn-nav{padding:9px 14px;font-size:.86rem}.brand .word{font-size:1.1rem}}
 
-  /* ---------- hero: the Tennessee flag field ---------- */
-  .hero{--mark:clamp(300px,40vw,560px);background:var(--crimson);color:var(--white);position:relative;overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:clamp(24px,4vw,56px);padding-top:clamp(64px,9vw,104px);padding-bottom:clamp(72px,9vw,108px)}
-  .hero-inner{max-width:680px}
-  .hero-mark{width:var(--mark);height:var(--mark);margin-right:calc(var(--mark) * -.26);pointer-events:none;animation:mark-in 1.1s cubic-bezier(.2,.7,.2,1) both}
-  @keyframes mark-in{from{opacity:0;transform:rotate(-24deg) scale(.92)}to{opacity:1;transform:none}}
-  .hero h1{font-family:var(--display);font-weight:900;font-size:clamp(2.7rem,6.6vw,5rem);line-height:.98;letter-spacing:-.025em;margin-bottom:28px;text-wrap:balance}
-  .hero .lede{font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.55;max-width:34em;color:#FDE9EA;margin-bottom:36px}
-  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .hero .fine{margin-top:22px;font-size:.88rem;color:#F6CDD1;max-width:36em}
-  .doc-chip{display:flex;align-items:center;gap:14px;margin-top:40px;padding-top:26px;border-top:1px solid rgba(255,255,255,.28);max-width:34em}
-  .doc-chip img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:2px solid var(--white);flex:none}
-  .doc-chip p{font-size:.95rem;line-height:1.45;color:#FDE9EA}
-  .doc-chip b{display:block;color:var(--white);font-weight:700;font-size:1.02rem}
-  /* flag hem: the white pinstripe and blue bar from the state flag's fly end */
-  .hem{height:18px;background:linear-gradient(var(--white) 0 5px,var(--navy) 5px 100%)}
-  @media(max-width:860px){
-    .hero{--mark:clamp(220px,60vw,320px)}
-    .hero-grid{grid-template-columns:1fr;row-gap:8px;padding-bottom:0}
-    .hero-mark{justify-self:end;margin:0 calc(var(--mark) * -.24) calc(var(--mark) * -.4) 0}
-  }
+  /* ---------- hero ---------- */
+  .hero{padding:28px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+  .pill-tag{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 8px;font-size:.88rem;font-weight:600;margin-bottom:26px}
+  .pill-tag img{width:22px;height:22px}
+  .hero h1{font-weight:700;font-size:clamp(2.6rem,5.6vw,4.4rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:22px;text-wrap:balance}
+  .hero .lede{font-size:clamp(1.08rem,1.5vw,1.22rem);color:var(--muted);max-width:30em;margin-bottom:32px}
+  .cta-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .cta-row .price-note{font-size:.95rem;color:var(--muted)}
+  .cta-row .price-note b{color:var(--ink)}
+  .ticks{list-style:none;display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px}
+  .ticks li{display:flex;align-items:center;gap:8px;font-size:.93rem;font-weight:600}
+  .ticks li::before{content:"";width:20px;height:20px;border-radius:50%;flex:none;background:var(--crimson) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+  .hero .fine{margin-top:22px;font-size:.84rem;color:var(--muted);max-width:34em}
+
+  .hero-art{position:relative;border-radius:var(--r-lg);background:radial-gradient(120% 90% at 20% 15%,#fff 0,var(--mist) 45%,var(--blush) 100%);aspect-ratio:1/1.02;overflow:hidden}
+  .hero-art .halo{position:absolute;width:78%;height:78%;left:11%;top:11%;border-radius:50%;background:rgba(255,255,255,.55)}
+  .hero-art .pen{position:absolute;left:50%;top:50%;height:74%;width:auto;transform:translate(-50%,-50%) rotate(-24deg);filter:drop-shadow(0 30px 30px rgba(15,30,61,.22));animation:float-in 1s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes float-in{from{opacity:0;transform:translate(-50%,-44%) rotate(-24deg)}}
+  .float{position:absolute;background:#fff;border-radius:18px;box-shadow:0 18px 40px -18px rgba(15,30,61,.35);padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:.88rem;line-height:1.35;max-width:260px}
+  .float b{display:block;font-size:.95rem}
+  .float img.face{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex:none}
+  .float .ic{width:40px;height:40px;border-radius:12px;background:var(--blush);display:grid;place-items:center;flex:none}
+  .float-a{left:6%;top:7%}
+  .float-b{right:6%;bottom:8%}
+  .float-c{left:8%;bottom:26%;padding:10px 16px;font-weight:700}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero-art{aspect-ratio:1/.95}.float{font-size:.82rem;padding:11px 14px;max-width:220px}.float-c{display:none}}
 
   /* ---------- section rhythm ---------- */
-  section{padding:clamp(64px,9vw,104px) 0}
-  .kicker{font-family:var(--display);font-weight:700;color:var(--crimson);font-size:1.08rem;margin-bottom:10px}
-  h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,3.8vw,3rem);line-height:1.08;letter-spacing:-.018em;color:var(--navy);margin-bottom:18px;max-width:22ch;text-wrap:balance}
-  .sub{color:var(--ink-soft);max-width:38em;font-size:1.1rem}
-  .note{margin-top:24px;font-size:.92rem;color:var(--ink-soft);max-width:46em}
+  section{padding:clamp(64px,8vw,104px) 0}
+  .sec-head{max-width:720px;margin-bottom:44px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .eyebrow{font-size:.95rem;font-weight:700;color:var(--crimson);margin-bottom:12px}
+  h2{font-weight:700;font-size:clamp(2rem,3.9vw,3.1rem);line-height:1.06;letter-spacing:-.04em;margin-bottom:16px;text-wrap:balance}
+  .sub{color:var(--muted);font-size:1.1rem}
+  .note{margin-top:24px;font-size:.88rem;color:var(--muted);max-width:52em}
+  .white{background:#fff}
 
-  /* ---------- steps: one star per step, like the flag's three ---------- */
-  .steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px;position:relative}
-  .steps::before{content:"";position:absolute;left:32px;right:32px;top:31px;border-top:2px dashed var(--line);z-index:0}
-  .step{position:relative;z-index:1}
-  .star{width:64px;height:64px;position:relative;margin-bottom:22px;background:var(--white)}
-  .star svg{width:64px;height:64px}
-  .star span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:1.3rem;color:var(--white);padding-top:4px}
-  .step h3{font-family:var(--display);font-weight:800;font-size:1.32rem;line-height:1.25;color:var(--navy);margin-bottom:10px}
-  .step p{color:var(--ink-soft);font-size:1rem}
-  @media(max-width:820px){.steps{grid-template-columns:1fr;gap:36px}.steps::before{left:31px;right:auto;top:32px;bottom:32px;border-top:none;border-left:2px dashed var(--line)}.step{padding-left:88px}.star{position:absolute;left:0;top:-4px}}
+  /* ---------- treatments ---------- */
+  .treat-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .treat{background:#fff;border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column}
+  .treat-art{height:250px;position:relative;display:grid;place-items:center}
+  .treat-sema .treat-art{background:linear-gradient(160deg,#fff 0,var(--mist) 100%)}
+  .treat-tirz .treat-art{background:linear-gradient(160deg,#fff 0,var(--blush) 100%)}
+  .treat-art{overflow:hidden}
+  .treat-art svg{height:200px;width:auto;transform:rotate(-24deg);filter:drop-shadow(0 22px 22px rgba(15,30,61,.2))}
+  .treat-art .chip{position:absolute;left:20px;top:20px;background:#fff;border-radius:999px;padding:6px 14px;font-size:.82rem;font-weight:700;z-index:2}
+  .treat-body{padding:30px 30px 32px;display:flex;flex-direction:column;flex:1}
+  .treat h3{font-size:1.75rem;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+  .treat .alias{color:var(--muted);font-size:.95rem;margin:6px 0 22px}
+  .stat-row{display:flex;align-items:baseline;gap:12px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:20px}
+  .stat-row .stat{font-size:2.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--crimson)}
+  .stat-row p{font-size:.88rem;color:var(--muted);line-height:1.4}
+  .treat ul{list-style:none;margin-bottom:28px;flex:1}
+  .treat li{position:relative;padding:6px 0 6px 28px;font-size:.97rem}
+  .treat li::before{content:"";position:absolute;left:0;top:10px;width:18px;height:18px;border-radius:50%;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+  .treat .btn{align-self:flex-start}
+  @media(max-width:820px){.treat-grid{grid-template-columns:1fr}.treat-art{height:200px}}
 
-  /* ---------- ledger: what $99 covers vs. what the pharmacy charges ---------- */
-  .ledger-sec{background:var(--sky)}
-  .ledger{display:grid;grid-template-columns:1.1fr 1fr;margin-top:48px;border-radius:var(--r);overflow:hidden;box-shadow:0 1px 0 var(--line),0 24px 48px -28px rgba(15,30,61,.45)}
-  .ledger-col{padding:40px 38px}
-  .ledger-covers{background:var(--navy);color:#D3DBEC}
-  .ledger-pharm{background:var(--white)}
-  .ledger-col h3{font-family:var(--display);font-weight:800;font-size:1.4rem;line-height:1.2;margin-bottom:6px}
-  .ledger-covers h3{color:var(--white)}
-  .ledger-pharm h3{color:var(--navy)}
-  .ledger-col .tag{font-size:.95rem;font-weight:600;margin-bottom:22px}
-  .ledger-covers .tag{color:#F0A9B1}
-  .ledger-pharm .tag{color:var(--ink-soft)}
-  .ledger ul{list-style:none}
-  .ledger li{padding:12px 0 12px 30px;border-top:1px solid var(--line);font-size:.98rem;position:relative}
-  .ledger-covers li{border-top-color:rgba(255,255,255,.14)}
-  .ledger li:first-child{border-top:none}
-  .ledger li::before{content:"";position:absolute;left:2px;top:21px;width:12px;height:7px;border-left:2.5px solid var(--crimson);border-bottom:2.5px solid var(--crimson);transform:rotate(-45deg)}
-  .ledger-covers li::before{border-color:#F0A9B1}
-  .ledger-pharm li::before{width:12px;height:0;border-left:none;border-bottom:2.5px solid var(--ink-soft);transform:none;top:24px}
-  .ledger-covers li b{color:var(--white);font-weight:600}
-  .ledger-pharm li b{color:var(--navy);font-weight:600}
-  @media(max-width:780px){.ledger{grid-template-columns:1fr}.ledger-col{padding:32px 26px}}
+  /* ---------- how it works ---------- */
+  .steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .step{background:#fff;border-radius:var(--r-md);padding:30px 28px 32px}
+  .step .num{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:22px}
+  .step h3{font-size:1.22rem;font-weight:700;letter-spacing:-.02em;line-height:1.25;margin-bottom:10px}
+  .step p{color:var(--muted);font-size:.98rem}
+  @media(max-width:860px){.steps{grid-template-columns:1fr}}
 
-  /* ---------- medications ---------- */
-  .meds{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}
-  .med{border:1px solid var(--line);border-radius:var(--r);padding:34px 32px;background:var(--white)}
-  .med h3{font-family:var(--display);font-weight:800;font-size:1.65rem;color:var(--navy);line-height:1.15}
-  .med .alias{color:var(--ink-soft);font-size:.95rem;margin:6px 0 26px}
-  .bar{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
-  .bar .stat{font-family:var(--display);font-weight:900;font-size:2.6rem;color:var(--crimson);line-height:1;letter-spacing:-.02em}
-  .track{height:10px;background:var(--sky);border-radius:5px;overflow:hidden;margin-bottom:10px}
-  .track i{display:block;height:100%;background:var(--crimson);border-radius:5px}
-  .med .statlab{font-size:.9rem;color:var(--ink-soft);margin-bottom:20px}
-  .med .desc{font-size:.98rem;color:var(--ink-soft);padding-top:18px;border-top:1px solid var(--line)}
-  @media(max-width:780px){.meds{grid-template-columns:1fr}.med{padding:28px 24px}}
+  /* ---------- membership / ledger ---------- */
+  .ledger{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:stretch}
+  .mcard{background:var(--ink);color:#C8CDD8;border-radius:var(--r-lg);padding:38px 36px}
+  .mcard .top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+  .mcard h3{color:#fff;font-size:1.35rem;font-weight:700;letter-spacing:-.02em}
+  .mcard .badge{background:var(--crimson);color:#fff;border-radius:999px;padding:5px 12px;font-size:.8rem;font-weight:700}
+  .amount{font-size:clamp(3.6rem,7vw,4.6rem);font-weight:800;color:#fff;letter-spacing:-.05em;line-height:1;margin:18px 0 4px}
+  .amount small{font-size:1rem;font-weight:600;letter-spacing:0;color:#C8CDD8;margin-left:4px}
+  .mcard .per{font-size:.95rem;margin-bottom:24px}
+  .mcard ul,.pcard ul{list-style:none}
+  .mcard li{position:relative;padding:11px 0 11px 30px;border-top:1px solid rgba(255,255,255,.12);font-size:.96rem}
+  .mcard li b{color:#fff;font-weight:600}
+  .mcard li::before{content:"";position:absolute;left:0;top:14px;width:18px;height:18px;border-radius:50%;background:var(--crimson) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+  .mcard .btn{margin-top:26px;width:100%}
+  .pcard{background:#fff;border-radius:var(--r-lg);padding:38px 36px;border:1px solid var(--line)}
+  .pcard h3{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+  .pcard .tag{color:var(--muted);font-size:.95rem;font-weight:600;margin-bottom:18px}
+  .pcard li{padding:14px 0;border-top:1px solid var(--line);font-size:.96rem;color:var(--muted)}
+  .pcard li:first-child{border-top:none}
+  .pcard li b{color:var(--ink);font-weight:600}
+  @media(max-width:860px){.ledger{grid-template-columns:1fr}.mcard,.pcard{padding:30px 24px}}
+
+  /* ---------- comparison ---------- */
+  .compare{background:#fff;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line)}
+  .compare table{width:100%;border-collapse:collapse;font-size:.97rem}
+  .compare th,.compare td{padding:18px 22px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
+  .compare thead th{border-top:none;font-size:.92rem;font-weight:700;color:var(--muted);background:var(--bg)}
+  .compare thead th.us{color:#fff;background:var(--ink)}
+  .compare td.us{background:#FBF5F4;font-weight:600}
+  .compare tbody th{font-weight:600;width:30%}
+  .compare td.them{color:var(--muted)}
+  @media(max-width:640px){.compare th,.compare td{padding:14px 12px;font-size:.88rem}.compare tbody th{width:34%}}
 
   /* ---------- doctor ---------- */
-  .doctor{background:var(--navy);color:var(--white);position:relative}
-  .doctor .kicker{color:#F0A9B1}
-  .doctor h2{color:var(--white)}
-  .doctor-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start}
-  .doctor-figure{position:relative;max-width:380px}
-  .doctor-figure::before{content:"";position:absolute;inset:22px -22px -22px 22px;background:var(--crimson);border-radius:var(--r)}
-  .doctor-photo{position:relative;width:100%;height:auto;border-radius:var(--r)}
-  .doctor-photo-cap{font-size:.86rem;color:#AEB9D3;margin-top:40px}
-  .doctor p{color:#C9D3E8;margin-bottom:18px;max-width:38em}
-  .doctor p b{color:var(--white);font-weight:600}
-  .cred{list-style:none;margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);overflow:hidden}
-  .cred li{background:var(--navy);padding:18px 20px;color:#C9D3E8;font-size:.94rem;line-height:1.5}
-  .cred li b{display:block;color:var(--white);font-weight:600;margin-bottom:2px}
-  @media(max-width:860px){.doctor-grid{grid-template-columns:1fr;gap:56px}.doctor-figure{max-width:280px}}
-  @media(max-width:560px){.cred{grid-template-columns:1fr}}
+  .doc-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+  .doc-photo{border-radius:var(--r-lg);width:100%;height:auto;max-width:460px;background:var(--sand)}
+  .doc-grid p:not(.eyebrow){color:var(--muted);margin-bottom:16px;max-width:36em}
+  .doc-grid p:not(.eyebrow) b{color:var(--ink)}
+  .cred{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  .cred li{background:var(--bg);border-radius:16px;padding:16px 18px;font-size:.9rem;color:var(--muted);line-height:1.45}
+  .cred li b{display:block;color:var(--ink);font-weight:700;font-size:.97rem;margin-bottom:2px}
+  .doc-cap{font-size:.84rem;color:var(--muted);margin-top:14px}
+  @media(max-width:860px){.doc-grid{grid-template-columns:1fr;gap:36px}.doc-photo{max-width:340px}}
+  @media(max-width:520px){.cred{grid-template-columns:1fr}}
 
-  /* ---------- who qualifies ---------- */
-  .qualify{background:var(--sky)}
-  .qlist{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;max-width:940px}
-  .qlist li{background:var(--white);border-radius:var(--r);padding:18px 20px 18px 56px;position:relative;font-size:1rem;border:1px solid var(--line)}
-  .qlist li::before{content:"";position:absolute;left:18px;top:19px;width:24px;height:24px;border-radius:50%;background:var(--crimson)}
-  .qlist li::after{content:"";position:absolute;left:25px;top:26px;width:10px;height:5px;border-left:2px solid var(--white);border-bottom:2px solid var(--white);transform:rotate(-45deg)}
-  .qlist b{font-weight:600;color:var(--navy)}
-  .qualify .cta{margin-top:40px}
-  @media(max-width:720px){.qlist{grid-template-columns:1fr}}
-
-  /* ---------- price: a membership card on the crimson field ---------- */
-  .price{background:var(--crimson);color:var(--white)}
-  .price-grid{display:grid;grid-template-columns:1fr minmax(0,460px);gap:64px;align-items:center}
-  .price .kicker{color:#F6CDD1}
-  .price h2{color:var(--white)}
-  .price .sub{color:#FDE9EA}
-  .price .fine{margin-top:22px;font-size:.88rem;color:#F6CDD1;max-width:34em}
-  .card{background:var(--white);color:var(--ink);border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(15,30,61,.7)}
-  .card-head{background:var(--navy);color:var(--white);display:flex;align-items:center;gap:12px;padding:18px 26px;font-family:var(--display);font-weight:800;font-size:1.08rem;border-bottom:5px solid var(--white);box-shadow:0 5px 0 var(--navy)}
-  .card-head img{width:30px;height:30px}
-  .card-body{padding:32px 30px 30px}
-  .amount{font-family:var(--display);font-weight:900;font-size:clamp(4.2rem,9vw,5.6rem);line-height:1;color:var(--navy);letter-spacing:-.03em}
-  .amount sup{font-size:.4em;vertical-align:super;font-weight:800;color:var(--crimson);margin-right:2px}
-  .amount small{font-family:var(--sans);font-size:1rem;font-weight:600;color:var(--ink-soft);letter-spacing:0;margin-left:6px}
-  .per{color:var(--ink-soft);font-size:.95rem;margin:8px 0 22px}
-  .card ul{list-style:none;margin-bottom:26px}
-  .card li{padding:10px 0 10px 30px;border-top:1px solid var(--line);position:relative;font-size:.97rem}
-  .card li:first-child{border-top:none}
-  .card li::before{content:"";position:absolute;left:3px;top:18px;width:12px;height:7px;border-left:2.5px solid var(--crimson);border-bottom:2.5px solid var(--crimson);transform:rotate(-45deg)}
-  .card .btn{width:100%;text-align:center}
-  @media(max-width:860px){.price-grid{grid-template-columns:1fr;gap:40px}}
+  /* ---------- qualify ---------- */
+  .qlist{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .qlist li{background:#fff;border-radius:var(--r-md);padding:22px 22px 22px 60px;position:relative;font-size:.97rem;color:var(--muted)}
+  .qlist li b{color:var(--ink);font-weight:700}
+  .qlist li::before{content:"";position:absolute;left:20px;top:22px;width:26px;height:26px;border-radius:50%;background:var(--crimson) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/26px no-repeat}
+  .qualify .cta{margin-top:36px}
+  @media(max-width:900px){.qlist{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.qlist{grid-template-columns:1fr}}
 
   /* ---------- faq ---------- */
-  .faq-grid{display:grid;grid-template-columns:.8fr 1.6fr;gap:64px;align-items:start}
-  .faq-head{position:sticky;top:110px}
-  .faq-head p:not(.kicker){color:var(--ink-soft)}
-  .faq-head a{color:var(--crimson);font-weight:600}
-  .faq details{border-top:1px solid var(--line)}
-  .faq details:last-of-type{border-bottom:1px solid var(--line)}
-  .faq summary{cursor:pointer;padding:22px 48px 22px 2px;font-weight:600;font-size:1.08rem;color:var(--navy);list-style:none;position:relative}
-  .faq summary:hover{color:var(--crimson)}
+  .faq-list{max-width:820px;margin:0 auto}
+  .faq details{background:var(--bg);border-radius:18px;margin-bottom:12px;padding:0 24px}
+  .faq summary{cursor:pointer;padding:22px 40px 22px 0;font-weight:700;font-size:1.05rem;list-style:none;position:relative}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"";position:absolute;right:10px;top:50%;width:10px;height:10px;border-right:2.5px solid var(--crimson);border-bottom:2.5px solid var(--crimson);transform:translateY(-70%) rotate(45deg);transition:transform .2s ease}
-  .faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
-  .faq .a{padding:0 2px 24px;color:var(--ink-soft);max-width:40em}
-  .faq .a a{color:var(--crimson)}
+  .faq summary::after{content:"";position:absolute;right:4px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 5v10M5 10h10' stroke='%23141821' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat;transition:transform .2s ease}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq .a{padding:0 0 24px;color:var(--muted);max-width:42em}
+  .faq .a a{color:var(--crimson);font-weight:600}
   .faq .a p+p{margin-top:12px}
-  @media(max-width:860px){.faq-grid{grid-template-columns:1fr;gap:28px}.faq-head{position:static}}
+  .faq-more{text-align:center;margin-top:24px;color:var(--muted)}
+  .faq-more a{color:var(--ink);font-weight:700}
+
+  /* ---------- closing CTA ---------- */
+  .closer{padding:0 0 clamp(64px,8vw,104px)}
+  .closer-card{background:var(--crimson);color:#fff;border-radius:var(--r-lg);padding:clamp(40px,6vw,72px);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;position:relative;overflow:hidden}
+  .closer-card h2{margin-bottom:10px;max-width:16ch}
+  .closer-card p{color:#FBDDE0;max-width:32em}
+  .closer-card .mark{position:absolute;right:-90px;bottom:-110px;width:320px;height:320px;opacity:.18}
+  .closer-card .btn{position:relative}
+  @media(max-width:760px){.closer-card{grid-template-columns:1fr}}
 
   /* ---------- footer ---------- */
-  footer{background:var(--navy);color:#9FACC9;padding:0 0 48px;font-size:.9rem}
-  footer .hem{background:linear-gradient(var(--crimson) 0 12px,var(--white) 12px 100%);height:17px;margin-bottom:64px}
+  footer{background:var(--ink);color:#9AA1AF;padding:64px 0 48px;font-size:.9rem}
   footer .cols{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;margin-bottom:44px}
   footer .fbrand{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-  footer .fbrand .word{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--white)}
-  footer a{color:#C9D3E8}
+  footer .fbrand .word{font-weight:800;font-size:1.1rem;color:#fff;letter-spacing:-.02em}
+  footer a{color:#D9DCE3}
   footer .legal-links{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:26px}
-  footer .legal-links a{color:var(--white);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3)}
-  footer .legal-links a:hover{border-bottom-color:var(--white)}
-  footer .disc{line-height:1.7;border-top:1px solid var(--navy-2);padding-top:26px;font-size:.85rem}
+  footer .legal-links a{color:#fff;font-weight:600;text-decoration:none}
+  footer .legal-links a:hover{text-decoration:underline}
+  footer .disc{line-height:1.7;border-top:1px solid #2A303D;padding-top:26px;font-size:.84rem}
   footer .disc p+p{margin-top:10px}
   @media(max-width:760px){footer .cols{grid-template-columns:1fr;gap:30px}}
 
-  /* ---------- mobile CTA bar ---------- */
+  /* ---------- mobile sticky CTA ---------- */
   .mobile-cta{display:none}
   @media(max-width:720px){
-    .mobile-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:12px;align-items:center;justify-content:space-between;background:var(--white);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px -12px rgba(15,30,61,.35)}
-    .mobile-cta p{font-size:.85rem;line-height:1.3;color:var(--ink-soft)}
-    .mobile-cta p b{display:block;color:var(--navy);font-size:1rem}
-    .mobile-cta .btn{padding:11px 18px;font-size:.95rem}
-    body{padding-bottom:76px}
-    .btn-nav{display:none}
+    .mobile-cta{display:flex;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;gap:12px;align-items:center;justify-content:space-between;background:#fff;border-radius:999px;padding:8px 8px 8px 22px;box-shadow:0 14px 34px -10px rgba(15,30,61,.4)}
+    .mobile-cta p{font-size:.82rem;line-height:1.25;color:var(--muted)}
+    .mobile-cta p b{display:block;color:var(--ink);font-size:.98rem}
+    .mobile-cta .btn{padding:12px 20px;font-size:.95rem}
+    .nav-links .btn{display:none}
+    body{padding-bottom:88px}
   }
 
   /* ---------- eligibility modal ---------- */
-  .modal-back{display:none;position:fixed;inset:0;background:rgba(15,30,61,.72);z-index:100;overflow-y:auto;padding:32px 16px}
+  .modal-back{display:none;position:fixed;inset:0;background:rgba(20,24,33,.6);backdrop-filter:blur(3px);z-index:100;overflow-y:auto;padding:32px 16px}
   .modal-back.open{display:block;animation:fade .2s ease}
   .modal-back.open .modal{animation:rise .25s cubic-bezier(.2,.7,.2,1)}
   @keyframes fade{from{opacity:0}}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}}
-  .modal{background:var(--white);max-width:560px;margin:4vh auto;border-radius:12px;padding:40px 38px;position:relative;border-top:8px solid var(--crimson)}
-  .modal h3{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--navy);margin-bottom:8px}
-  .modal .mnote{font-size:.88rem;color:var(--ink-soft);margin-bottom:26px}
-  .modal .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.7rem;color:var(--ink-soft);cursor:pointer;line-height:1;padding:6px}
+  .modal{background:#fff;max-width:560px;margin:4vh auto;border-radius:24px;padding:40px 36px;position:relative}
+  .modal h3{font-size:1.7rem;font-weight:700;letter-spacing:-.03em;margin-bottom:8px}
+  .modal .mnote{font-size:.88rem;color:var(--muted);margin-bottom:26px}
+  .modal .close{position:absolute;top:16px;right:16px;background:var(--bg);border:none;width:36px;height:36px;border-radius:50%;font-size:1.4rem;color:var(--ink);cursor:pointer;line-height:1}
   .q{margin-bottom:22px}
-  .q label.ql{display:block;font-weight:600;color:var(--navy);margin-bottom:10px;font-size:1rem}
+  .q label.ql{display:block;font-weight:700;margin-bottom:10px;font-size:.98rem}
   .optrow{display:flex;gap:10px;flex-wrap:wrap}
-  .opt{border:1.5px solid var(--line);background:var(--white);border-radius:6px;padding:10px 20px;font-size:.95rem;cursor:pointer;font-weight:600;color:var(--ink);font-family:var(--sans);transition:border-color .15s ease}
-  .opt:hover{border-color:var(--navy)}
-  .opt.sel{border-color:var(--crimson);background:var(--crimson);color:var(--white)}
+  .opt{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:10px 22px;font-size:.95rem;cursor:pointer;font-weight:600;color:var(--ink);font-family:var(--sans);transition:border-color .15s ease}
+  .opt:hover{border-color:var(--ink)}
+  .opt.sel{border-color:var(--ink);background:var(--ink);color:#fff}
   .bmirow{display:flex;gap:10px;flex-wrap:wrap}
-  .bmirow input{width:86px;padding:10px 12px;border:1.5px solid var(--line);border-radius:6px;font-size:1rem;font-family:var(--sans);background:var(--white)}
-  .bmirow input:focus{border-color:var(--navy);outline:none}
-  .bmirow .unit{align-self:center;font-size:.9rem;color:var(--ink-soft)}
-  .bmi-out{margin-top:10px;font-size:.95rem;font-weight:600;color:var(--navy)}
-  .verdict{margin-top:8px;padding:18px 20px;border-radius:8px;font-size:.96rem;display:none}
+  .bmirow input{width:86px;padding:11px 14px;border:1.5px solid var(--line);border-radius:14px;font-size:1rem;font-family:var(--sans);background:#fff}
+  .bmirow input:focus{border-color:var(--ink);outline:none}
+  .bmirow .unit{align-self:center;font-size:.9rem;color:var(--muted)}
+  .bmi-out{margin-top:10px;font-size:.95rem;font-weight:700}
+  .verdict{margin-top:8px;padding:18px 20px;border-radius:16px;font-size:.95rem;display:none}
   .verdict.show{display:block}
-  .verdict.go{background:#EAF3EC;border:1px solid #BFD9C6;color:#1E4D2B}
-  .verdict.stop{background:#F9ECEA;border:1px solid #E4C3BE;color:var(--crimson-deep)}
-  .verdict.talk{background:var(--sky);border:1px solid var(--line);color:var(--ink)}
-  .modal .btn{width:100%;text-align:center;margin-top:6px}
-  .modal .btn[disabled]{opacity:.45;cursor:not-allowed}
+  .verdict.go{background:#EAF4EC;color:#1E4D2B}
+  .verdict.stop{background:#FBECEA;color:var(--crimson-deep)}
+  .verdict.talk{background:var(--mist);color:var(--ink)}
+  .modal .btn{width:100%;margin-top:6px}
+  .modal .btn[disabled]{opacity:.35;cursor:not-allowed}
+  .modal .btn[disabled]:hover{background:var(--ink)}
 </style>
 </head>
 <body>
 
-<div class="strip">Telehealth for <strong>Tennessee residents only</strong> — statewide, from Memphis to Mountain City.</div>
+<div class="strip">Now serving <strong>Tennessee residents</strong>, from Memphis to Mountain City.</div>
 
 <nav aria-label="Main">
   <div class="nav-inner">
     <a class="brand" href="#top">
-      <img class="mark" src="/logo.svg" width="36" height="36" alt="">
-      <span class="word">GLP <em>Tennessee</em></span>
+      <img class="mark" src="/logo.svg" width="32" height="32" alt="">
+      <span class="word">GLP Tennessee</span>
     </a>
     <div class="nav-links">
+      <a href="#meds">Treatments</a>
       <a href="#how">How it works</a>
-      <a href="#ledger">What $99 covers</a>
-      <a href="#meds">The medications</a>
+      <a href="#ledger">Pricing</a>
+      <a href="#physician">Your doctor</a>
       <a href="#faq">FAQ</a>
-      <a href="#" class="btn btn-crimson btn-nav" onclick="openElig(event)">Check my eligibility</a>
+      <a href="#" class="btn btn-dark btn-sm" onclick="openElig(event)">Get started</a>
     </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
   <div class="wrap hero-grid">
-    <div class="hero-inner">
+    <div>
+      <p class="pill-tag"><img src="/logo.svg" width="22" height="22" alt="">Physician-led GLP-1 care</p>
       <h1>Telehealth weight loss built for Tennessee.</h1>
-      <p class="lede">A Tennessee doctor evaluates you by video and, if it's right for you, prescribes tirzepatide (Zepbound®, Mounjaro®) or semaglutide (Wegovy®, Ozempic®) to the pharmacy you choose within 24 hours. $99 a month for the care. You pay the pharmacy directly for the medication, with no markups and no contract.</p>
+      <p class="lede">Get evaluated by a Tennessee doctor over video. If it's right for you, he'll prescribe tirzepatide or semaglutide to the pharmacy you choose within 24 hours.</p>
       <div class="cta-row">
-        <a href="#" class="btn btn-white" onclick="openElig(event)">Check my eligibility</a>
-        <a href="#how" class="btn btn-ghost">See how it works</a>
+        <a href="#" class="btn btn-dark" onclick="openElig(event)">Get started</a>
+        <p class="price-note"><b>$99/month</b> for your care. Cancel anytime.</p>
       </div>
-      <p class="fine">A prescription is written only if it's medically appropriate after your evaluation. If it isn't, your first month is refunded in full.</p>
-      <div class="doc-chip">
-        <img src="/dr-merrick.webp" width="58" height="58" alt="">
-        <p><b>William B. Merrick, DO</b>Board-certified internist. Tennessee license No. 4267.</p>
-      </div>
+      <ul class="ticks">
+        <li>Licensed Tennessee physician</li>
+        <li>Your pharmacy, no markups</li>
+        <li>No contracts</li>
+      </ul>
+      <p class="fine">A prescription is written only if it's medically appropriate after your evaluation. If it isn't, your first month is refunded in full. Medication is paid to your pharmacy separately.</p>
     </div>
-    <img class="hero-mark" src="/logo.svg" alt="">
+    <div class="hero-art" aria-hidden="true">
+      <div class="halo"></div>
+      <svg class="pen" viewBox="0 0 120 520"><defs><linearGradient id="pb" x1="0" x2="1"><stop offset="0" stop-color="#E9ECF2"/><stop offset=".45" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D5DAE4"/></linearGradient><linearGradient id="pc" x1="0" x2="1"><stop offset="0" stop-color="#8E1222"/><stop offset=".45" stop-color="#C9283B"/><stop offset="1" stop-color="#8E1222"/></linearGradient><linearGradient id="pd" x1="0" x2="1"><stop offset="0" stop-color="#0F1E3D"/><stop offset=".5" stop-color="#2B3D66"/><stop offset="1" stop-color="#0F1E3D"/></linearGradient></defs><rect x="22" y="8" width="76" height="120" rx="30" fill="url(#pc)"/><rect x="18" y="118" width="84" height="300" rx="20" fill="url(#pb)"/><rect x="40" y="170" width="40" height="70" rx="10" fill="#0F1E3D" opacity=".85"/><rect x="47" y="180" width="26" height="8" rx="4" fill="#fff" opacity=".7"/><rect x="18" y="300" width="84" height="12" fill="#B5182B"/><rect x="26" y="410" width="68" height="100" rx="16" fill="url(#pd)"/><g stroke="#fff" stroke-opacity=".25" stroke-width="3"><path d="M36 430v60M48 430v60M60 430v60M72 430v60M84 430v60"/></g></svg>
+      <div class="float float-a"><img class="face" src="/dr-merrick.webp" width="46" height="46" alt=""><span><b>Dr. Will Merrick, DO</b>Board-certified internist, TN license 4267</span></div>
+      <div class="float float-c">Once weekly</div>
+      <div class="float float-b"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="#B5182B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Prescription sent</b>to your pharmacy within 24 hours</span></div>
+    </div>
   </div>
-  <div class="hem" aria-hidden="true"></div>
 </header>
+
+<section class="white" id="meds">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Treatments</p>
+      <h2>Two proven GLP-1 options.</h2>
+      <p class="sub">Both are FDA-approved, once-weekly injections. Dr. Merrick helps you choose based on your history, your goals, and what you can get and afford.</p>
+    </div>
+    <div class="treat-grid">
+      <article class="treat treat-tirz">
+        <div class="treat-art"><span class="chip">Strongest average results</span>
+          <svg viewBox="0 0 120 520" aria-hidden="true"><rect x="22" y="8" width="76" height="120" rx="30" fill="#B5182B"/><rect x="18" y="118" width="84" height="300" rx="20" fill="#fff"/><rect x="40" y="170" width="40" height="70" rx="10" fill="#0F1E3D"/><rect x="18" y="300" width="84" height="12" fill="#B5182B"/><rect x="26" y="410" width="68" height="100" rx="16" fill="#0F1E3D"/></svg>
+        </div>
+        <div class="treat-body">
+          <h3>Tirzepatide</h3>
+          <p class="alias">Zepbound®, the weight-management form of the medicine in Mounjaro®</p>
+          <div class="stat-row"><span class="stat">≈21%</span><p>average body-weight loss at the top dose in its pivotal 72-week clinical trial</p></div>
+          <ul>
+            <li>Dual GIP/GLP-1 agonist</li>
+            <li>Often the better choice when maximum effect is the goal</li>
+            <li>Available through LillyDirect self-pay or your pharmacy</li>
+          </ul>
+          <a href="#" class="btn btn-dark" onclick="openElig(event)">Get started</a>
+        </div>
+      </article>
+      <article class="treat treat-sema">
+        <div class="treat-art"><span class="chip">Longest track record</span>
+          <svg viewBox="0 0 120 520" aria-hidden="true"><rect x="22" y="8" width="76" height="120" rx="30" fill="#0F1E3D"/><rect x="18" y="118" width="84" height="300" rx="20" fill="#fff"/><rect x="40" y="170" width="40" height="70" rx="10" fill="#0F1E3D"/><rect x="18" y="300" width="84" height="12" fill="#0F1E3D"/><rect x="26" y="410" width="68" height="100" rx="16" fill="#B5182B"/></svg>
+        </div>
+        <div class="treat-body">
+          <h3>Semaglutide</h3>
+          <p class="alias">Wegovy®, the weight-management form of the medicine in Ozempic®</p>
+          <div class="stat-row"><span class="stat">≈15%</span><p>average body-weight loss in its pivotal 68-week clinical trial</p></div>
+          <ul>
+            <li>The most widely used GLP-1 for weight loss</li>
+            <li>Recognized by more insurance plans</li>
+            <li>Available through NovoCare self-pay or your pharmacy</li>
+          </ul>
+          <a href="#" class="btn btn-dark" onclick="openElig(event)">Get started</a>
+        </div>
+      </article>
+    </div>
+    <p class="note">Illustrations are not actual products. Trial results are averages; individual results vary, and medication works best alongside the nutrition and habit changes Dr. Merrick works through with you. GLP Tennessee is an independent medical practice, not affiliated with Novo Nordisk or Eli Lilly.</p>
+  </div>
+</section>
 
 <section id="how">
   <div class="wrap">
-    <p class="kicker">How it works</p>
-    <h2>Three steps. No runaround.</h2>
-    <p class="sub">The opposite of the big telehealth mills: one Tennessee physician, a clear price, and your pharmacy, not ours.</p>
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps. No runaround.</h2>
+    </div>
     <ol class="steps">
       <li class="step">
-        <div class="star" aria-hidden="true"><svg viewBox="0 0 64 64"><polygon fill="#B5182B" points="32,3 40.2,22.7 61.5,24.4 45.3,38.3 50.2,59.1 32,48 13.8,59.1 18.7,38.3 2.5,24.4 23.8,22.7"/></svg><span>1</span></div>
-        <h3>Join and tell us your history</h3>
-        <p>Start your $99/month membership, then complete a secure medical intake: your health history, medications, weight history, and the pharmacy you want to use.</p>
+        <div class="num">1</div>
+        <h3>Join and complete your intake</h3>
+        <p>Start your $99/month membership, then fill out a secure medical intake: health history, medications, weight history, and the pharmacy you want to use.</p>
       </li>
       <li class="step">
-        <div class="star" aria-hidden="true"><svg viewBox="0 0 64 64"><polygon fill="#B5182B" points="32,3 40.2,22.7 61.5,24.4 45.3,38.3 50.2,59.1 32,48 13.8,59.1 18.7,38.3 2.5,24.4 23.8,22.7"/></svg><span>2</span></div>
-        <h3>Video evaluation with Dr. Merrick</h3>
-        <p>A real visit with the physician who'll manage your care. He reviews your history, talks through semaglutide vs. tirzepatide, and decides with you whether treatment is appropriate.</p>
+        <div class="num">2</div>
+        <h3>Video visit with Dr. Merrick</h3>
+        <p>He reviews your history, talks through tirzepatide vs. semaglutide, and decides with you whether treatment is appropriate.</p>
       </li>
       <li class="step">
-        <div class="star" aria-hidden="true"><svg viewBox="0 0 64 64"><polygon fill="#B5182B" points="32,3 40.2,22.7 61.5,24.4 45.3,38.3 50.2,59.1 32,48 13.8,59.1 18.7,38.3 2.5,24.4 23.8,22.7"/></svg><span>3</span></div>
-        <h3>Fill at your pharmacy, follow up monthly</h3>
-        <p>Your prescription goes to the pharmacy you choose. Each month: a check-in on progress and side effects, dose adjustments when you're ready, and refills handled.</p>
+        <div class="num">3</div>
+        <h3>Fill at your pharmacy</h3>
+        <p>Your prescription goes to the pharmacy you choose. Monthly check-ins cover progress, side effects, dose changes, and refills.</p>
       </li>
     </ol>
   </div>
 </section>
 
-<section class="ledger-sec" id="ledger">
+<section class="white" id="ledger">
   <div class="wrap">
-    <p class="kicker">The straight deal</p>
-    <h2>Exactly what $99 covers, and what it doesn't.</h2>
-    <p class="sub">Most GLP-1 sites bundle the medication so you can't see what you're paying for. We don't sell medication at all, so there's nothing to hide.</p>
-    <div class="ledger">
-      <div class="ledger-col ledger-covers">
-        <h3>Your membership covers</h3>
-        <p class="tag">$99/month, cancel anytime</p>
+    <div class="sec-head">
+      <p class="eyebrow">Pricing</p>
+      <h2>One membership. No hidden costs.</h2>
+      <p class="sub">Most GLP-1 programs bundle the medication so you can't see what you're paying for. We don't sell medication at all, so there's nothing to hide.</p>
+    </div>
+    <div class="ledger" id="join">
+      <div class="mcard">
+        <div class="top"><h3>GLP Tennessee membership</h3><span class="badge">Cancel anytime</span></div>
+        <div class="amount">$99<small>/month</small></div>
+        <p class="per">No sign-up fee. No contract.</p>
         <ul>
-          <li><b>Initial video evaluation</b> with Dr. Merrick</li>
+          <li><b>Video evaluation</b> with Dr. Merrick</li>
           <li><b>Your prescription</b>, sent every month to the pharmacy you choose, if treatment is medically appropriate</li>
-          <li><b>Monthly follow-ups</b> and progress check-ins as needed</li>
-          <li><b>Dose titration</b> on the standard escalation schedule, adjusted to how you're tolerating it</li>
+          <li><b>Monthly follow-ups</b> and dose titration based on how you're tolerating it</li>
           <li><b>Side-effect management</b> and messaging with the practice between visits</li>
           <li><b>Refills and pharmacy coordination</b>, including prior-authorization paperwork if your insurance covers the medication</li>
+          <li><b>Full refund of your first month</b> if treatment isn't right for you</li>
         </ul>
+        <a href="#" class="btn btn-light" onclick="openElig(event)">Get started</a>
       </div>
-      <div class="ledger-col ledger-pharm">
-        <h3>You pay your pharmacy for</h3>
+      <div class="pcard">
+        <h3>Paid to your pharmacy</h3>
         <p class="tag">At their price. We add nothing.</p>
         <ul>
           <li><b>The medication itself.</b> Depending on coverage and the option you choose, that may be an insurance copay or a cash price.</li>
-          <li>Many members use the manufacturers' direct self-pay programs (LillyDirect for Zepbound®, NovoCare for Wegovy®) or their local pharmacy, whichever is cheapest. Dr. Merrick will point you to the best option for your situation.</li>
-          <li><b>Any labs</b>, if needed, ordered to your local lab at their price. Many members already have recent labs that work fine.</li>
+          <li><b>Manufacturer self-pay programs</b> like LillyDirect for Zepbound® and NovoCare for Wegovy® often have the best cash prices. Dr. Merrick will point you to the cheapest legitimate option.</li>
+          <li><b>Any labs</b>, if needed, at your local lab's price. Many members already have recent labs that work fine.</li>
         </ul>
+        <p class="note">A doctor should make money from doctoring, not from marking up your medicine. That's why the price can stay at $99.</p>
       </div>
     </div>
-    <p class="note">We think a doctor should make money from doctoring, not from marking up your medicine. That's the whole business model, and it's why the price can stay at $99.</p>
   </div>
 </section>
 
-<section id="meds">
+<section>
   <div class="wrap">
-    <p class="kicker">The medications</p>
-    <h2>Two proven options. One honest conversation about which fits you.</h2>
-    <p class="sub">Both are FDA-approved GLP-1 class medications taken as a once-weekly injection. Dr. Merrick prescribes based on your history, your goals, your tolerance, and what you can actually get and afford.</p>
-    <div class="meds">
-      <div class="med">
-        <h3>Semaglutide</h3>
-        <p class="alias">Wegovy®, the weight-management form of the medicine in Ozempic®</p>
-        <div class="bar"><p class="stat">≈15%</p></div>
-        <div class="track" role="img" aria-label="About 15 percent average body-weight loss"><i style="width:60%"></i></div>
-        <p class="statlab">Average body-weight loss in its pivotal 68-week clinical trial</p>
-        <p class="desc">The most widely used GLP-1 for weight loss, with the longest track record. Often the easier option to source and the one more insurance plans recognize.</p>
-      </div>
-      <div class="med">
-        <h3>Tirzepatide</h3>
-        <p class="alias">Zepbound®, the weight-management form of the medicine in Mounjaro®</p>
-        <div class="bar"><p class="stat">≈21%</p></div>
-        <div class="track" role="img" aria-label="About 21 percent average body-weight loss"><i style="width:84%"></i></div>
-        <p class="statlab">Average body-weight loss at the top dose in its pivotal 72-week clinical trial</p>
-        <p class="desc">A dual GIP/GLP-1 agonist with the strongest average weight-loss results of any approved medication. Frequently the better choice when maximum effect is the goal.</p>
-      </div>
+    <div class="sec-head">
+      <p class="eyebrow">Why GLP Tennessee</p>
+      <h2>A real doctor, not a questionnaire.</h2>
     </div>
-    <p class="note">Trial results are averages. Individual results vary, and medication only works alongside the nutrition and habit changes Dr. Merrick will work through with you. GLP Tennessee is an independent medical practice, not affiliated with Novo Nordisk or Eli Lilly.</p>
+    <div class="compare">
+      <table>
+        <thead><tr><th scope="col"><span class="sr" style="position:absolute;left:-9999px">Feature</span></th><th scope="col" class="us">GLP Tennessee</th><th scope="col">Many online programs</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Who treats you</th><td class="us">One Tennessee-licensed physician, every visit</td><td class="them">Rotating pool of providers</td></tr>
+          <tr><th scope="row">First visit</th><td class="us">Video evaluation with Dr. Merrick</td><td class="them">Often a questionnaire only</td></tr>
+          <tr><th scope="row">Medication cost</th><td class="us">Paid to your pharmacy at their price</td><td class="them">Bundled into the monthly fee</td></tr>
+          <tr><th scope="row">Where you fill</th><td class="us">Any pharmacy you choose</td><td class="them">Their partner pharmacy</td></tr>
+          <tr><th scope="row">Commitment</th><td class="us">Month to month, cancel anytime</td><td class="them">Sometimes multi-month plans</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
-<section class="doctor" id="physician">
-  <div class="wrap doctor-grid">
+<section class="white" id="physician">
+  <div class="wrap doc-grid">
     <div>
-      <figure class="doctor-figure">
-        <img class="doctor-photo" src="/dr-merrick.webp" width="480" height="600" alt="Dr. William B. Merrick, DO" loading="lazy">
-      </figure>
-      <p class="doctor-photo-cap">William B. Merrick, DO. Internal medicine, McKenzie, Tennessee.</p>
+      <img class="doc-photo" src="/dr-merrick.webp" width="480" height="600" alt="Dr. William B. Merrick, DO" loading="lazy">
+      <p class="doc-cap">William B. Merrick, DO. Internal medicine, McKenzie, Tennessee.</p>
     </div>
     <div>
-      <p class="kicker">Your physician</p>
+      <p class="eyebrow">Your doctor</p>
       <h2>One doctor. Licensed here. Practicing here.</h2>
       <p><b>William B. Merrick, DO</b> is a board-certified internal medicine physician with more than ten years of clinical experience. He practices hospital medicine in West Tennessee: the doctor you'd see if you were admitted, not a contractor in another state reading a questionnaire.</p>
-      <p>He built GLP Tennessee after watching patients pay inflated bundled prices to out-of-state telehealth companies for medications their own pharmacy could fill, with no real physician relationship behind the prescription. This practice is the alternative: direct care, transparent pricing, and a doctor who answers for his decisions.</p>
+      <p>He built GLP Tennessee after watching patients pay inflated bundled prices to out-of-state companies for medications their own pharmacy could fill. This practice is the alternative: direct care, transparent pricing, and a doctor who answers for his decisions.</p>
       <ul class="cred">
-        <li><b>Board-certified in internal medicine</b>Doctor of Osteopathic Medicine, 10+ years of clinical and hospitalist experience</li>
-        <li><b>Licensed in Tennessee</b>Osteopathic Physician License No. 4267, Tennessee Board of Osteopathic Examination. NPI 1497231054.</li>
-        <li><b>Every visit, every follow-up</b>is with Dr. Merrick. No rotating provider pool.</li>
-        <li><b>Care delivered through</b>William B. Merrick, DO, PLLC, a Tennessee medical practice</li>
+        <li><b>Board-certified</b>Internal medicine, 10+ years of clinical and hospitalist experience</li>
+        <li><b>Licensed in Tennessee</b>Osteopathic Physician License No. 4267. NPI 1497231054.</li>
+        <li><b>Same doctor, every visit</b>No rotating provider pool</li>
+        <li><b>A Tennessee practice</b>William B. Merrick, DO, PLLC</li>
       </ul>
     </div>
   </div>
@@ -466,55 +515,30 @@
 
 <section class="qualify">
   <div class="wrap">
-    <p class="kicker">Who qualifies</p>
-    <h2>The basics, before you spend a dollar.</h2>
-    <p class="sub">GLP-1 medications are FDA-indicated for adults with a BMI of 30 or higher, or 27+ with a weight-related condition like high blood pressure, prediabetes, sleep apnea, or high cholesterol. The eligibility check takes about a minute and nothing you enter is saved.</p>
+    <div class="sec-head">
+      <p class="eyebrow">Who qualifies</p>
+      <h2>The basics, before you spend a dollar.</h2>
+      <p class="sub">GLP-1 medications are FDA-indicated for adults with a BMI of 30 or higher, or 27+ with a weight-related condition like high blood pressure, prediabetes, sleep apnea, or high cholesterol. The eligibility check takes about a minute and nothing you enter is saved.</p>
+    </div>
     <ul class="qlist">
-      <li><b>Tennessee resident</b>. You'll need to be physically in Tennessee for visits.</li>
+      <li><b>Tennessee resident.</b> You'll need to be physically in Tennessee for visits.</li>
       <li><b>18 or older</b></li>
       <li><b>BMI 30+</b>, or 27+ with a weight-related health condition</li>
       <li><b>Not pregnant</b>, breastfeeding, or planning pregnancy</li>
       <li><b>No personal or family history</b> of medullary thyroid carcinoma or MEN 2</li>
-      <li><b>Full history reviewed by the doctor</b>. Conditions like pancreatitis or gastroparesis get an individual look, not an automatic no.</li>
+      <li><b>Full history reviewed.</b> Conditions like pancreatitis or gastroparesis get an individual look, not an automatic no.</li>
     </ul>
-    <p class="cta"><a href="#" class="btn btn-crimson" onclick="openElig(event)">Check my eligibility</a></p>
+    <p class="cta"><a href="#" class="btn btn-dark" onclick="openElig(event)">Check my eligibility</a></p>
   </div>
 </section>
 
-<section class="price" id="join">
-  <div class="wrap price-grid">
-    <div>
-      <p class="kicker">Membership</p>
-      <h2>One price. Everything medical.</h2>
-      <p class="sub">No sign-up fee, no contract, no medication markup. If Dr. Merrick decides treatment isn't right for you, your first month comes back in full.</p>
-      <p class="fine">Medication is purchased separately from your pharmacy at their price. A prescription is issued only when medically appropriate in Dr. Merrick's clinical judgment.</p>
+<section class="faq white" id="faq">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions, answered.</h2>
     </div>
-    <div class="card">
-      <div class="card-head"><img src="/logo.svg" width="30" height="30" alt="">GLP Tennessee membership</div>
-      <div class="card-body">
-        <div class="amount"><sup>$</sup>99<small>/month</small></div>
-        <p class="per">Cancel anytime from your billing portal.</p>
-        <ul>
-          <li>Video evaluation and ongoing care with Dr. Merrick</li>
-          <li>Semaglutide or tirzepatide prescribed to your pharmacy, when appropriate</li>
-          <li>Monthly follow-ups, dose titration, and refill management</li>
-          <li>Messaging with the practice between visits</li>
-          <li>Full refund of your first month if treatment isn't right for you</li>
-        </ul>
-        <a href="#" class="btn btn-crimson" onclick="openElig(event)">Start with the eligibility check</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="wrap faq-grid">
-    <div class="faq-head">
-      <p class="kicker">Questions</p>
-      <h2>Asked and answered.</h2>
-      <p>Something else? Email <a href="mailto:care@glptennessee.com">care@glptennessee.com</a>.</p>
-    </div>
-    <div>
+    <div class="faq-list">
       <details>
         <summary>Does the $99 include the medication?</summary>
         <div class="a"><p>No, and that's on purpose. You buy the medication from your own pharmacy at their price, with zero markup from us. Depending on your insurance and the option you choose, members typically pay anywhere from a modest copay to a few hundred dollars a month cash through the manufacturers' direct programs. Dr. Merrick will help you find the cheapest legitimate route for your situation.</p></div>
@@ -552,11 +576,24 @@
         <div class="a"><p>Because that's where Dr. Merrick is licensed and lives. Telehealth law requires your doctor to be licensed in the state where you are. And frankly, a practice that serves one state well beats one that serves fifty states thinly.</p></div>
       </details>
     </div>
+    <p class="faq-more">Something else? Email <a href="mailto:care@glptennessee.com">care@glptennessee.com</a>.</p>
+  </div>
+</section>
+
+<section class="closer white">
+  <div class="wrap">
+    <div class="closer-card">
+      <img class="mark" src="/logo.svg" alt="">
+      <div>
+        <h2>See if GLP-1 treatment is right for you.</h2>
+        <p>The eligibility check takes about a minute, and nothing you enter is saved.</p>
+      </div>
+      <a href="#" class="btn btn-light" onclick="openElig(event)">Get started</a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="hem" aria-hidden="true"></div>
   <div class="wrap">
     <div class="cols">
       <div>
@@ -579,7 +616,7 @@
     </div>
     <div class="disc">
       <p>Membership fees cover medical services only. Prescriptions are issued solely when medically appropriate in the prescribing physician's independent clinical judgment; membership does not guarantee that any medication will be prescribed. Medication is dispensed by and purchased from the pharmacy of your choice; GLP Tennessee does not sell, dispense, or mark up medication.</p>
-      <p>Wegovy® and Ozempic® are registered trademarks of Novo Nordisk A/S. Zepbound® and Mounjaro® are registered trademarks of Eli Lilly and Company. GLP Tennessee and William B. Merrick, DO, PLLC are not affiliated with, endorsed by, or sponsored by Novo Nordisk or Eli Lilly. Clinical trial figures describe average results from published studies; individual results vary.</p>
+      <p>Wegovy® and Ozempic® are registered trademarks of Novo Nordisk A/S. Zepbound® and Mounjaro® are registered trademarks of Eli Lilly and Company. GLP Tennessee and William B. Merrick, DO, PLLC are not affiliated with, endorsed by, or sponsored by Novo Nordisk or Eli Lilly. Clinical trial figures describe average results from published studies; individual results vary. Pen illustrations are generic and do not depict any specific product.</p>
       <p>This website provides general information and is not medical advice. If you are experiencing a medical emergency, call 911.</p>
       <p>© 2026 William B. Merrick, DO, PLLC. All rights reserved.</p>
     </div>
@@ -587,8 +624,8 @@
 </footer>
 
 <div class="mobile-cta">
-  <p><b>$99/month</b>Tennessee residents only</p>
-  <a href="#" class="btn btn-crimson" onclick="openElig(event)">Check eligibility</a>
+  <p><b>$99/month</b>Tennessee only</p>
+  <a href="#" class="btn btn-dark" onclick="openElig(event)">Get started</a>
 </div>
 
 <!-- ============ ELIGIBILITY MODAL ============ -->
