@@ -314,6 +314,20 @@
   .modal .btn{width:100%;margin-top:6px}
   .modal .btn[disabled]{opacity:.35;cursor:not-allowed}
   .modal .btn[disabled]:hover{background:var(--ink)}
+
+  /* ---------- photography ---------- */
+  .hero-art{background:var(--sand)}
+  .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;animation:fade-in .9s ease both}
+  @keyframes fade-in{from{opacity:0}}
+  .float .ic img{width:22px;height:22px}
+  .treat-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .treat-sema .treat-art img{transform:scaleX(-1);filter:hue-rotate(-150deg) saturate(.55) brightness(1.04)}
+  .how-photo{margin:0 0 24px;border-radius:var(--r-lg);overflow:hidden;position:relative}
+  .how-photo img{width:100%;height:auto;max-height:520px;object-fit:cover;object-position:50% 40%}
+  .how-photo figcaption{position:absolute;left:20px;bottom:20px;background:#fff;border-radius:999px;padding:9px 18px;font-size:.9rem;font-weight:700}
+  .closer-photo{background:linear-gradient(90deg,rgba(20,24,33,.82) 0,rgba(20,24,33,.55) 55%,rgba(20,24,33,.15) 100%),url(/img/smokies.webp) center 35%/cover}
+  .closer-photo p{color:#E6E8EE}
+  .closer-photo .mark{display:none}
 </style>
 </head>
 <body>
@@ -355,10 +369,8 @@
       <p class="fine">A prescription is written only if it's medically appropriate after your evaluation. If it isn't, your first month is refunded in full. Medication is paid to your pharmacy separately.</p>
     </div>
     <div class="hero-art" aria-hidden="true">
-      <div class="halo"></div>
-      <svg class="pen" viewBox="0 0 120 520"><defs><linearGradient id="pb" x1="0" x2="1"><stop offset="0" stop-color="#E9ECF2"/><stop offset=".45" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D5DAE4"/></linearGradient><linearGradient id="pc" x1="0" x2="1"><stop offset="0" stop-color="#8E1222"/><stop offset=".45" stop-color="#C9283B"/><stop offset="1" stop-color="#8E1222"/></linearGradient><linearGradient id="pd" x1="0" x2="1"><stop offset="0" stop-color="#0F1E3D"/><stop offset=".5" stop-color="#2B3D66"/><stop offset="1" stop-color="#0F1E3D"/></linearGradient></defs><rect x="22" y="8" width="76" height="120" rx="30" fill="url(#pc)"/><rect x="18" y="118" width="84" height="300" rx="20" fill="url(#pb)"/><rect x="40" y="170" width="40" height="70" rx="10" fill="#0F1E3D" opacity=".85"/><rect x="47" y="180" width="26" height="8" rx="4" fill="#fff" opacity=".7"/><rect x="18" y="300" width="84" height="12" fill="#B5182B"/><rect x="26" y="410" width="68" height="100" rx="16" fill="url(#pd)"/><g stroke="#fff" stroke-opacity=".25" stroke-width="3"><path d="M36 430v60M48 430v60M60 430v60M72 430v60M84 430v60"/></g></svg>
-      <div class="float float-a"><img class="face" src="/dr-merrick.webp" width="46" height="46" alt=""><span><b>Dr. Will Merrick, DO</b>Board-certified internist, TN license 4267</span></div>
-      <div class="float float-c">Once weekly</div>
+      <img class="hero-photo" src="/img/porch.webp" width="1000" height="1239" alt="">
+      <div class="float float-a"><span class="ic"><img src="/logo.svg" width="22" height="22" alt=""></span><span><b>Tennessee-licensed doctor</b>Video visits statewide</span></div>
       <div class="float float-b"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="#B5182B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Prescription sent</b>to your pharmacy within 24 hours</span></div>
     </div>
   </div>
@@ -374,7 +386,7 @@
     <div class="treat-grid">
       <article class="treat treat-tirz">
         <div class="treat-art"><span class="chip">Strongest average results</span>
-          <svg viewBox="0 0 120 520" aria-hidden="true"><rect x="22" y="8" width="76" height="120" rx="30" fill="#B5182B"/><rect x="18" y="118" width="84" height="300" rx="20" fill="#fff"/><rect x="40" y="170" width="40" height="70" rx="10" fill="#0F1E3D"/><rect x="18" y="300" width="84" height="12" fill="#B5182B"/><rect x="26" y="410" width="68" height="100" rx="16" fill="#0F1E3D"/></svg>
+          <img src="/img/pen.webp" width="900" height="900" alt="" loading="lazy">
         </div>
         <div class="treat-body">
           <h3>Tirzepatide</h3>
@@ -390,7 +402,7 @@
       </article>
       <article class="treat treat-sema">
         <div class="treat-art"><span class="chip">Longest track record</span>
-          <svg viewBox="0 0 120 520" aria-hidden="true"><rect x="22" y="8" width="76" height="120" rx="30" fill="#0F1E3D"/><rect x="18" y="118" width="84" height="300" rx="20" fill="#fff"/><rect x="40" y="170" width="40" height="70" rx="10" fill="#0F1E3D"/><rect x="18" y="300" width="84" height="12" fill="#0F1E3D"/><rect x="26" y="410" width="68" height="100" rx="16" fill="#B5182B"/></svg>
+          <img src="/img/pen.webp" width="900" height="900" alt="" loading="lazy">
         </div>
         <div class="treat-body">
           <h3>Semaglutide</h3>
@@ -405,7 +417,7 @@
         </div>
       </article>
     </div>
-    <p class="note">Illustrations are not actual products. Trial results are averages; individual results vary, and medication works best alongside the nutrition and habit changes Dr. Merrick works through with you. GLP Tennessee is an independent medical practice, not affiliated with Novo Nordisk or Eli Lilly.</p>
+    <p class="note">Product photos are illustrative and do not depict any specific medication. Trial results are averages; individual results vary, and medication works best alongside the nutrition and habit changes Dr. Merrick works through with you. GLP Tennessee is an independent medical practice, not affiliated with Novo Nordisk or Eli Lilly.</p>
   </div>
 </section>
 
@@ -415,6 +427,7 @@
       <p class="eyebrow">How it works</p>
       <h2>Three steps. No runaround.</h2>
     </div>
+    <figure class="how-photo"><img src="/img/telehealth.webp" width="1600" height="1067" alt="A woman on a video visit with Dr. Merrick at her kitchen table" loading="lazy"><figcaption>Every visit is by secure video with Dr. Merrick.</figcaption></figure>
     <ol class="steps">
       <li class="step">
         <div class="num">1</div>
@@ -582,7 +595,7 @@
 
 <section class="closer white">
   <div class="wrap">
-    <div class="closer-card">
+    <div class="closer-card closer-photo">
       <img class="mark" src="/logo.svg" alt="">
       <div>
         <h2>See if GLP-1 treatment is right for you.</h2>
@@ -616,7 +629,7 @@
     </div>
     <div class="disc">
       <p>Membership fees cover medical services only. Prescriptions are issued solely when medically appropriate in the prescribing physician's independent clinical judgment; membership does not guarantee that any medication will be prescribed. Medication is dispensed by and purchased from the pharmacy of your choice; GLP Tennessee does not sell, dispense, or mark up medication.</p>
-      <p>Wegovy® and Ozempic® are registered trademarks of Novo Nordisk A/S. Zepbound® and Mounjaro® are registered trademarks of Eli Lilly and Company. GLP Tennessee and William B. Merrick, DO, PLLC are not affiliated with, endorsed by, or sponsored by Novo Nordisk or Eli Lilly. Clinical trial figures describe average results from published studies; individual results vary. Pen illustrations are generic and do not depict any specific product.</p>
+      <p>Wegovy® and Ozempic® are registered trademarks of Novo Nordisk A/S. Zepbound® and Mounjaro® are registered trademarks of Eli Lilly and Company. GLP Tennessee and William B. Merrick, DO, PLLC are not affiliated with, endorsed by, or sponsored by Novo Nordisk or Eli Lilly. Clinical trial figures describe average results from published studies; individual results vary. Lifestyle photos are illustrative and use models, not patients; pen images are generic and do not depict any specific product.</p>
       <p>This website provides general information and is not medical advice. If you are experiencing a medical emergency, call 911.</p>
       <p>© 2026 William B. Merrick, DO, PLLC. All rights reserved.</p>
     </div>
