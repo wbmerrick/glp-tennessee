@@ -318,8 +318,20 @@
   .modal .btn{width:100%;margin-top:6px}
   .modal .btn[disabled]{opacity:.35;cursor:not-allowed}
   .modal .btn[disabled]:hover{background:var(--ink)}
-  .hero-emblem{position:absolute;left:50%;top:50%;width:52%;transform:translate(-50%,-50%);opacity:.95;animation:fade-in .9s ease both}
+
+  /* ---------- photography ---------- */
+  .hero-art{background:var(--sand)}
+  .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;animation:fade-in .9s ease both}
   @keyframes fade-in{from{opacity:0}}
+  .float .ic img{width:22px;height:22px}
+  .treat-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .treat-sema .treat-art img{transform:scaleX(-1);filter:hue-rotate(-150deg) saturate(.55) brightness(1.04)}
+  .how-photo{margin:0 0 24px;border-radius:var(--r-lg);overflow:hidden;position:relative}
+  .how-photo img{width:100%;height:auto;max-height:520px;object-fit:cover;object-position:50% 40%}
+  .how-photo figcaption{position:absolute;left:20px;bottom:20px;background:#fff;border-radius:999px;padding:9px 18px;font-size:.9rem;font-weight:700}
+  .closer-photo{background:linear-gradient(90deg,rgba(20,24,33,.82) 0,rgba(20,24,33,.55) 55%,rgba(20,24,33,.15) 100%),url(/img/smokies.webp) center 35%/cover}
+  .closer-photo p{color:#E6E8EE}
+  .closer-photo .mark{display:none}
 </style>
 </head>
 <body>
@@ -361,10 +373,8 @@
       <p class="fine">A prescription is written only if it's medically appropriate after your evaluation. If it isn't, your first month is refunded in full. Medication is paid to your pharmacy separately.</p>
     </div>
     <div class="hero-art" aria-hidden="true">
-      <div class="halo"></div>
-      <img class="hero-emblem" src="/logo.svg" alt="">
-      <div class="float float-a"><img class="face" src="/dr-merrick.webp" width="46" height="46" alt=""><span><b>Dr. Will Merrick, DO</b>Board-certified internist, TN license 4267</span></div>
-      <div class="float float-c">Once weekly</div>
+      <img class="hero-photo" src="/img/porch.webp" width="1000" height="1239" alt="">
+      <div class="float float-a"><span class="ic"><img src="/logo.svg" width="22" height="22" alt=""></span><span><b>Tennessee-licensed doctor</b>Video visits statewide</span></div>
       <div class="float float-b"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="#B5182B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Prescription sent</b>to your pharmacy within 24 hours</span></div>
     </div>
   </div>
@@ -417,6 +427,7 @@
       <p class="eyebrow">How it works</p>
       <h2>Three steps. No runaround.</h2>
     </div>
+    <figure class="how-photo"><img src="/img/telehealth.webp" width="1600" height="1067" alt="A woman on a video visit with Dr. Merrick at her kitchen table" loading="lazy"><figcaption>Every visit is by secure video with Dr. Merrick.</figcaption></figure>
     <ol class="steps">
       <li class="step">
         <div class="num">1</div>
@@ -584,7 +595,7 @@
 
 <section class="closer white">
   <div class="wrap">
-    <div class="closer-card">
+    <div class="closer-card closer-photo">
       <img class="mark" src="/logo.svg" alt="">
       <div>
         <h2>See if GLP-1 treatment is right for you.</h2>
@@ -618,7 +629,7 @@
     </div>
     <div class="disc">
       <p>Membership fees cover medical services only. Prescriptions are issued solely when medically appropriate in the prescribing physician's independent clinical judgment; membership does not guarantee that any medication will be prescribed. Medication is dispensed by and purchased from the pharmacy of your choice; GLP Tennessee does not sell, dispense, or mark up medication.</p>
-      <p>Wegovy® and Ozempic® are registered trademarks of Novo Nordisk A/S. Zepbound® and Mounjaro® are registered trademarks of Eli Lilly and Company. GLP Tennessee and William B. Merrick, DO, PLLC are not affiliated with, endorsed by, or sponsored by Novo Nordisk or Eli Lilly. Clinical trial figures describe average results from published studies; individual results vary.</p>
+      <p>Wegovy® and Ozempic® are registered trademarks of Novo Nordisk A/S. Zepbound® and Mounjaro® are registered trademarks of Eli Lilly and Company. GLP Tennessee and William B. Merrick, DO, PLLC are not affiliated with, endorsed by, or sponsored by Novo Nordisk or Eli Lilly. Clinical trial figures describe average results from published studies; individual results vary. Lifestyle photos are illustrative and use models, not patients.</p>
       <p>This website provides general information and is not medical advice. If you are experiencing a medical emergency, call 911.</p>
       <p>© 2026 William B. Merrick, DO, PLLC. All rights reserved.</p>
     </div>
