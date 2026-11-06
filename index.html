@@ -140,7 +140,9 @@
   .float b{display:block;font-size:.95rem}
   .float img.face{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex:none}
   .float .ic{width:40px;height:40px;border-radius:12px;background:var(--blush);display:grid;place-items:center;flex:none}
-  .float-a{left:6%;top:7%}
+  .float-a{left:6%;bottom:8%;top:auto}
+  .float-a + .float-b{bottom:27%;top:auto;right:5%}
+  @media(max-width:900px){.float-a + .float-b{display:none}}
   .float-b{right:6%;bottom:8%}
   .float-c{left:8%;bottom:26%;padding:10px 16px;font-weight:700}
   @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero-art{aspect-ratio:1/.95}.float{font-size:.82rem;padding:11px 14px;max-width:220px}.float-c{display:none}}
@@ -374,7 +376,7 @@
     </div>
     <div class="hero-art" aria-hidden="true">
       <img class="hero-photo" src="/img/porch.webp" width="1000" height="1239" alt="">
-      <div class="float float-a"><span class="ic"><img src="/logo.svg" width="22" height="22" alt=""></span><span><b>Tennessee-licensed doctor</b>Video visits statewide</span></div>
+      <div class="float float-a"><span class="ic"><img src="/logo.svg" width="22" height="22" alt=""></span><span><b>Video visits</b>From anywhere in Tennessee</span></div>
       <div class="float float-b"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="#B5182B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Prescription sent</b>to your pharmacy within 24 hours</span></div>
     </div>
   </div>
